@@ -1,0 +1,14 @@
+{
+    "players": [
+        { "id": "1", "name": "AC Milanesa", "steam": "STEAM_0:1:36779496", "lore": ""},
+        { "id": "2", "name": "Blue Giants", "steam": "STEAM_0:0:427374257", "lore": ""},
+        { "id": "3", "name": "Bravona", "steam": "STEAM_0:1:221185704", "lore": ""},
+        { "id": "4", "name": "Caballeros de la Birra", "steam": "STEAM_0:1:98957445", "lore": ""},
+        { "id": "5", "name": "Coldchester United", "steam": "STEAM_0:1:55716910", "lore": ""},
+        { "id": "6", "name": "Deportivo Empate", "steam": "STEAM_0:1:245274134", "lore": "q hizo cuca"},
+        { "id": "7", "name": "Defensores del Doctor", "steam": "STEAM_0:0:140245318", "lore": ""},
+        { "id": "7", "name": "Musashi FC", "steam": "STEAM_0:1:32216071", "lore": ""},
+        { "id": "8", "name": "Meteors Gaming", "steam": "STEAM_0:1:129777573", "lore": "q hizo cuca"},
+        { "id": "9", "name": "Underdogs United", "steam": "STEAM_0:0:98901724", "lore": "q hizo cuca"}
+    ]
+}

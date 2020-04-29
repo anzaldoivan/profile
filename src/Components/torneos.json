@@ -1,0 +1,11 @@
+{
+    "torneos": [
+        { "id": "1", "name": "t1"},
+        { "id": "2", "name": "t2"},
+        { "id": "3", "name": "t3"},
+        { "id": "4", "name": "t4"},
+        { "id": "5", "name": "all"},
+        { "id": "6", "name": "maradei"},
+        { "id": "7", "name": "master"}
+    ]
+}
