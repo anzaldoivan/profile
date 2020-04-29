@@ -10,6 +10,9 @@ import Profile from "./Pages/Profile"
 import Table from "./Pages/Table"
 import Teams from "./Pages/Teams"
 
+document.title = "IOSoccer Sudamerica Stats";
+document.description = "Sitio web basado en PESMASTER cuyo fin es crear perfiles en tiempo real de los distintos usuarios de la comunidad de IOSoccer Sudamerica.";
+
 /*<Switch>
           <Route path="/db" exact component={Db} />
           <Route path="/players" component={Home} />
