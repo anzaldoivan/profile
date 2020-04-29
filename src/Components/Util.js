@@ -1,5 +1,6 @@
 const someCommonValues = ['common', 'values'];
 
+
 export const doSomethingWithInput = (theInput) => {
    //Do something with the input
    let loop = true;
@@ -32,3 +33,40 @@ export const doSomethingWithInput = (theInput) => {
 export const justAnAlert = () => {
    alert('hello');
 };
+
+export const steamid_to_64bit = (steamID) => {
+   var parts = steamID.split(":");
+    
+    var iServer = Number(parts[1]);
+    var iAuthID = Number(parts[2]);
+    
+    var converted = "76561197960265728"
+
+    var lastIndex = converted.length - 1
+
+    var toAdd = iAuthID * 2 + iServer;
+    var toAddString = new String(toAdd)    
+    var addLastIndex = toAddString.length - 1;
+
+    for(var i=0;i<=addLastIndex;i++)
+    {
+        var num = Number(toAddString.charAt(addLastIndex - i));
+        var j=lastIndex - i;
+        
+        do
+        {
+            var num2 = Number(converted.charAt(j));            
+            var sum = num + num2;        
+                    
+            converted = converted.substr(0,j) + (sum % 10).toString() + converted.substr(j+1);    
+        
+            num = Math.floor(sum / 10);            
+            j--;
+        }
+        while(num);
+            
+    }
+    
+    return converted;
+};
+

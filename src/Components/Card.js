@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {doSomethingWithInput, justAnAlert} from './Util.js'
+import {doSomethingWithInput, justAnAlert, steamid_to_64bit} from './Util.js'
 
 
 import * as SteamID from '@node-steam/id';
@@ -94,6 +94,7 @@ function Card(){
     const idd = new ID(playerID);
     const [actualovr, setActualovr] = useState("0");
     const [id, setId] = useState(0);
+    const [id2, setId2] = useState(0);
   
     const SteamAPI = require('steamapi');
     const steam = new SteamAPI('EC93B358FBCA4A90D62433C974003873');
@@ -280,6 +281,7 @@ function Card(){
       setGoalsconceded(user[0].goalsconceded);
       setSecondsplayed(user[0].secondsplayed);
 
+      setId(steamid_to_64bit(playerID));
       document.title = user[0].name;
       const actualtime = user[0].secondsplayed/60/90 > user[0].matches ? user[0].matches : user[0].secondsplayed/60/90;
       const PASS = Math.round(user[0].passescompleted/actualtime*5);
@@ -312,7 +314,7 @@ function Card(){
     }
 
     const fetchUser2 = async () => {
-      const apiCall2 = await fetch (`https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=EC93B358FBCA4A90D62433C974003873&steamids=${idd}`);
+      const apiCall2 = await fetch (`http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=EC93B358FBCA4A90D62433C974003873&steamids=${idd}`);
       const user2 = await apiCall2.json();
       //call setName below to change the state 'name'
       //fetch utilizado para determinar el ID64 del usuario y usarlo a la hora de identificar usuarios para fotos etc
@@ -320,7 +322,6 @@ function Card(){
       console.log(user2.response.players[0].avatarfull);
       steam.resolve('https://steamcommunity.com/id/Casana').then(id => {
         //console.log(id); // 76561198146931523
-        setId(idd.getSteamID64());
         console.log("XD 3!");
     });
 
