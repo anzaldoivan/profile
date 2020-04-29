@@ -14,7 +14,7 @@ function App(){
   return(
     <Router>
       <div className="App">
-        <Nav />
+        
         <Profile />
         <Switch>
           <Route path="/db" exact component={Db} />
