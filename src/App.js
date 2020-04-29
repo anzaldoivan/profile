@@ -16,9 +16,9 @@ function App(){
       <div className="App">
         <Nav />
         <Switch>
-          <Route path="/" exact component={Db} />
+          <Route path="/db" exact component={Db} />
           <Route path="/players" component={Home} />
-          <Route path="/profile" exact component={Profile} />
+          <Route exact path="/" exact component={Profile} />
           <Route path="/teams" exact component={Teams} />
           <Route path="/table" exact component={Table} />
         </Switch>
