@@ -15,6 +15,7 @@ function App(){
     <Router>
       <div className="App">
         <Nav />
+        <Profile />
         <Switch>
           <Route path="/db" exact component={Db} />
           <Route path="/players" component={Home} />
