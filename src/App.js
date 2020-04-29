@@ -10,19 +10,20 @@ import Profile from "./Pages/Profile"
 import Table from "./Pages/Table"
 import Teams from "./Pages/Teams"
 
-function App(){
-  return(
-    <Router>
-      <div className="App">
-        
-        <Profile />
-        <Switch>
+/*<Switch>
           <Route path="/db" exact component={Db} />
           <Route path="/players" component={Home} />
           <Route path="/" exact component={Profile} />
           <Route path="/teams" exact component={Teams} />
           <Route path="/table" exact component={Table} />
-        </Switch>
+</Switch>*/
+
+function App(){
+  return(
+    <Router>
+      <div className="App">
+        <Nav />
+        <Profile />
       </div>
     </Router>
   )
