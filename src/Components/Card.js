@@ -97,7 +97,7 @@ function Card(){
     const [id2, setId2] = useState(0);
   
     const SteamAPI = require('steamapi');
-    const steam = new SteamAPI('EC93B358FBCA4A90D62433C974003873');
+    const steam = new SteamAPI('XDDDDDDDDDDDDDDDDDDDDDDDDDDDDD');
 
     const totaltime = secondsplayed/60/90 > matches ? matches : secondsplayed/60/90;
     console.log("a ver el totaltime");
