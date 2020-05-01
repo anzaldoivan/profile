@@ -114,7 +114,7 @@ function Card(){
     team.toString().toLowerCase() == "viral team" ? "viral" :
     team.toString().toLowerCase() == "layuve" ? "layuve" :
     team.toString().toLowerCase() == "velez sarsfield" ? "velez" :
-    team.toString().toLowerCase() == "Merca Doçura" ? "mds" :
+    team.toString().toLowerCase() == "merca doçura" ? "mds" :
     team.toString().toLowerCase() == "peñarol" ? "peñarol" :
     team.toString().toLowerCase() == "ac milanesa" ? "acm" : "0"
     ;
