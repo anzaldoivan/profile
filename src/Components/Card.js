@@ -113,6 +113,9 @@ function Card(){
     team.toString().toLowerCase() == "los magorditos" ? "mago" :
     team.toString().toLowerCase() == "viral team" ? "viral" :
     team.toString().toLowerCase() == "layuve" ? "layuve" :
+    team.toString().toLowerCase() == "velez sarsfield" ? "velez" :
+    team.toString().toLowerCase() == "Merca Doçura" ? "mds" :
+    team.toString().toLowerCase() == "peñarol" ? "peñarol" :
     team.toString().toLowerCase() == "ac milanesa" ? "acm" : "0"
     ;
     const temporada = tID == 
@@ -1265,7 +1268,7 @@ function Card(){
     return(
       <div>
         <div className="content-container">
-          <div className="fw-container bg-dark" style={{ backgroundImage: `url(` + require(`../images/banners/${theteam}.png`) + `)` , backgroundSize: '70%', backgroundPosition: '43% 50%', backgroundRepeat: 'no-repeat', borderRight: ''}} >
+          <div className="fw-container bg-dark"  style={{ backgroundImage: `url(` + require(`../images/banners/${theteam}.png`) + `)` , backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}>
             <div className="container-large flex top-container">
               <div className="player-card player-card-shadow player-card-large bg-image2" style={{ backgroundImage: ovrtotal >= 90 ? `url(` + require(`../images/bg/0.png`) + `)`: ovrtotal >= 80 && ovrtotal < 90 ? `url(` + require(`../images/bg/03.png`) + `)` : ovrtotal >= 70 && ovrtotal < 80 ? `url(` + require(`../images/bg/05.png`) + `)` : `url(` + require(`../images/bg/05.png`) + `)`}}>
                 <div className="player-card-position">{pos}</div>
