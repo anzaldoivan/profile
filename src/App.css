@@ -327,6 +327,7 @@ a.button:hover {
 }
 
 .stat_tier_3 {
+  margin-top: 7px;
   background-color: #02fec5;
   stroke: #02fec5;
   color: #000;
@@ -434,6 +435,7 @@ h2 {
 }
 
 .stat_tier_2 {
+  margin-top: 7px;
   background-color: #a8fe02;
   stroke: #a8fe02;
   color: #000;
@@ -471,6 +473,7 @@ a, a:link, a:visited, a:hover {
 }
 
 .stat_tier_0 {
+  margin-top: 7px;
   background-color: #fd3730;
   stroke: #fd3730;
   color: #000;
@@ -571,6 +574,8 @@ td {
 }
 
 .stats-block {
+  margin-top: 7px;
+  margin-bottom: 7px;
   padding-left: 20px;
   padding-right: 20px;
   box-sizing: border-box;
@@ -587,6 +592,7 @@ td {
 }
 
 .stat_tier_2 {
+  margin-top: 7px;
   background-color: #a8fe02;
   stroke: #a8fe02;
   color: #000;
