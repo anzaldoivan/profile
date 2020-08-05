@@ -15,6 +15,7 @@ function TheNav(){
                 />{' '}
             </Navbar.Brand>
             <Nav className="mr-auto">
+                <Nav.Link href="https://forum.iosoccer-sa.bid">Foro</Nav.Link>
                 <Nav.Link href="https://stats.iosoccer-sa.bid">Estadísticas</Nav.Link>
                 <Nav.Link href="https://anzaldoivan.github.io/profile/">Perfiles</Nav.Link>
                 <Nav.Link href="https://anzaldoivan.github.io/squad-builder/">Squad Builder</Nav.Link>
