@@ -104,6 +104,7 @@ function Card(){
     console.log(totaltime);
     console.log(secondsplayed/60/90);
     console.log(matches);
+    
     // creamos la variable theteam para convertir el nombre del equipo a sus iniciales, y que de esta forma los banners sean visibles (se buguea si tiene espacios)
     const theteam = team.toString().toLowerCase() == 
     "meteors gaming" ? "mg" : 
