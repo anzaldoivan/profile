@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-
-import Nav from "./Components/Nav"
+import TheNav from "./Components/TheNav"
 import Home from "./Pages/Home"
 import Db from "./Pages/Db"
 import Profile from "./Pages/Profile"
@@ -25,7 +25,7 @@ function App(){
   return(
     <Router>
       <div className="App">
-        <Nav />
+        <TheNav />
         <Profile />
       </div>
     </Router>
