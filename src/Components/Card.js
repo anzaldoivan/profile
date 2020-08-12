@@ -120,6 +120,7 @@ function Card(){
     team.toString().toLowerCase() == "los angeles fc" ? "lafc" :
     team.toString().toLowerCase() == "los magios" ? "lmg" :
     team.toString().toLowerCase() == "Caballeros De La Birra" ? "lcb" :
+    team.toString().toLowerCase() == "cualidachi f.c" ? "cacfc" :
     team.toString().toLowerCase() == "ac milanesa" ? "acm" : "0"
     ;
     const temporada = tID == 
