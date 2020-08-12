@@ -45,6 +45,7 @@ function Card(){
     const [totalmatches, setTotalmatches] = useState(0);
 
     const [passavg, setPassavg] = useState(0);
+    const [defensepassavg, setDefensepassavg] = useState(0);
     const [assistavg, setAssistavg] = useState(0);
     const [posavg, setPosavg] = useState(0);
     const [attackassistavg, setAttackassistavg] = useState(0);
@@ -86,7 +87,7 @@ function Card(){
     
     const players = require("./players.json");
     const torneos = require("./torneos.json");
-    const [playerID, setPlayerID] = useState("STEAM_0:0:41134189");
+    const [playerID, setPlayerID] = useState("STEAM_0:1:36779496");
     const [tID, setTID] = useState("all");
 
     const [url, setCount] = useState(0);
@@ -117,6 +118,7 @@ function Card(){
     team.toString().toLowerCase() == "velez sarsfield" ? "velez" :
     team.toString().toLowerCase() == "merca doçura" ? "mds" :
     team.toString().toLowerCase() == "peñarol" ? "peñarol" :
+    team.toString().toLowerCase() == "los angeles fc" ? "lafc" :
     team.toString().toLowerCase() == "ac milanesa" ? "acm" : "0"
     ;
     const temporada = tID == 
@@ -144,7 +146,7 @@ function Card(){
     //const CC = (passescompleted/totaltime*5+assists/totaltime*90+possession*7)/3
     const CC = Math.round((passavg+assistavg+posavg)/3)
     const AF = (finavg+preavg+attackassistavg)/3;
-    const AD = interavg;
+    const AD = (interavg + defensepassavg)/2;
     /*const val_def = (AD * 2.8 + AF / 3 + CC / 2.5)/3;
     const val_del = ( AF * 2.8 + AD / 3 + CC / 2.5)/3;
     const val_mca = ( CC * 2.8 + AD / 5.8 + AF * 0.5) / 3;
@@ -289,6 +291,7 @@ function Card(){
       document.title = user[0].name;
       const actualtime = user[0].secondsplayed/60/90 > user[0].matches ? user[0].matches : user[0].secondsplayed/60/90;
       const PASS = Math.round(user[0].passescompleted/actualtime*5);
+      const DEFPASS = Math.round(doSomethingWithInput(PASS));
       const ASISS = Math.round(user[0].assists/actualtime*140);
       const TACKLE = Math.round(user[0].tacklescompleted/user[0].tackles*100*4.5);
       const POSS = Math.round(user[0].possession*8);
@@ -307,6 +310,7 @@ function Card(){
       console.log("ESTE ES EL PASS"+PASS+" ---- "+user[0].passescompleted/totaltime*5);
       setFinavg(Math.round(doSomethingWithInput(FIN)));
       setPassavg(Math.round(doSomethingWithInput(PASS)));
+      setDefensepassavg(Math.round(doSomethingWithInput(DEFPASS)));
       setAssistavg(Math.round(doSomethingWithInput(ASISS)));
       setInteravg(Math.round(doSomethingWithInput(INTER)));
       setPosavg(Math.round(doSomethingWithInput(POSS*0.97)));
@@ -364,6 +368,7 @@ function Card(){
       const totaltime = usert1[0].secondsplayed/60/90 > usert1[0].matches ? usert1[0].matches : usert1[0].secondsplayed/60/90;
 
       let PASS = Math.round(usert1[0].passescompleted/totaltime*5);
+      let DEFPASS = Math.round(doSomethingWithInput(PASS));
       let ASISS = Math.round(usert1[0].assists/totaltime*140);
       let TACKLE = Math.round(usert1[0].tacklescompleted/usert1[0].tackles*100*4.5);
       let POSS = Math.round(usert1[0].possession*8);
@@ -382,6 +387,7 @@ function Card(){
       CONCEDED = (Math.round(doSomethingWithInput(CONCEDED)));
       
       PASS = (Math.round(doSomethingWithInput(PASS)));
+      DEFPASS = (Math.round(doSomethingWithInput(PASS)));
       ASISS = (Math.round(doSomethingWithInput(ASISS)));
       INTER = (Math.round(doSomethingWithInput(INTER)));
       POSS = (Math.round(doSomethingWithInput(POSS*0.97)));
@@ -392,7 +398,7 @@ function Card(){
       SAVEPERCENT = (Math.round(doSomethingWithInput(SAVEPERCENT)));
 
       const AFT1 = (FIN+PRE+ATTACKASISS)/3;
-      const ADT1 = INTER;
+      const ADT1 = (INTER+DEFPASS)/2;
       //const CCT1 = ((usert1[0].passescompleted+usert1[0].assists*10+usert1[0].possession*10)/totaltime)*2.05;
       const CCT1 = (PASS+ASISS+POSS)/3;
       const CPT1 = (SAVE+SAVEPERCENT+CONCEDED)/3;
@@ -454,6 +460,7 @@ function Card(){
       const totaltime = usert1[0].secondsplayed/60/90 > usert1[0].matches ? usert1[0].matches : usert1[0].secondsplayed/60/90;
 
       let PASS = Math.round(usert1[0].passescompleted/totaltime*5);
+      let DEFPASS = Math.round(doSomethingWithInput(PASS));
       let ASISS = Math.round(usert1[0].assists/totaltime*140);
       let TACKLE = Math.round(usert1[0].tacklescompleted/usert1[0].tackles*100*4.5);
       let POSS = Math.round(usert1[0].possession*8);
@@ -472,6 +479,7 @@ function Card(){
       CONCEDED = (Math.round(doSomethingWithInput(CONCEDED)));
       
       PASS = (Math.round(doSomethingWithInput(PASS)));
+      DEFPASS = (Math.round(doSomethingWithInput(PASS)));
       ASISS = (Math.round(doSomethingWithInput(ASISS)));
       INTER = (Math.round(doSomethingWithInput(INTER)));
       POSS = (Math.round(doSomethingWithInput(POSS*0.97)));
@@ -482,7 +490,7 @@ function Card(){
       SAVEPERCENT = (Math.round(doSomethingWithInput(SAVEPERCENT)));
 
       const AFT1 = (FIN+PRE+ATTACKASISS)/3;
-      const ADT1 = INTER;
+      const ADT1 = (INTER+DEFPASS)/2;
       //const CCT1 = ((usert1[0].passescompleted+usert1[0].assists*10+usert1[0].possession*10)/totaltime)*2.05;
       const CCT1 = (PASS+ASISS+POSS)/3;
       const CPT1 = (SAVE+SAVEPERCENT+CONCEDED)/3;
@@ -543,6 +551,7 @@ function Card(){
         const totaltime = usert1[0].secondsplayed/60/90 > usert1[0].matches ? usert1[0].matches : usert1[0].secondsplayed/60/90;
 
         let PASS = Math.round(usert1[0].passescompleted/totaltime*5);
+        let DEFPASS = Math.round(doSomethingWithInput(PASS));
         let ASISS = Math.round(usert1[0].assists/totaltime*140);
         let TACKLE = Math.round(usert1[0].tacklescompleted/usert1[0].tackles*100*4.5);
         let POSS = Math.round(usert1[0].possession*8);
@@ -561,6 +570,7 @@ function Card(){
         CONCEDED = (Math.round(doSomethingWithInput(CONCEDED)));
         
         PASS = (Math.round(doSomethingWithInput(PASS)));
+        DEFPASS = (Math.round(doSomethingWithInput(PASS)));
         ASISS = (Math.round(doSomethingWithInput(ASISS)));
         INTER = (Math.round(doSomethingWithInput(INTER)));
         POSS = (Math.round(doSomethingWithInput(POSS*0.97)));
@@ -571,7 +581,7 @@ function Card(){
         SAVEPERCENT = (Math.round(doSomethingWithInput(SAVEPERCENT)));
   
         const AFT1 = (FIN+PRE+ATTACKASISS)/3;
-        const ADT1 = INTER;
+        const ADT1 = (INTER+DEFPASS)/2;
         //const CCT1 = ((usert1[0].passescompleted+usert1[0].assists*10+usert1[0].possession*10)/totaltime)*2.05;
         const CCT1 = (PASS+ASISS+POSS)/3;
         const CPT1 = (SAVE+SAVEPERCENT+CONCEDED)/3;
@@ -632,6 +642,7 @@ function Card(){
         const totaltime = usert1[0].secondsplayed/60/90 > usert1[0].matches ? usert1[0].matches : usert1[0].secondsplayed/60/90;
 
         let PASS = Math.round(usert1[0].passescompleted/totaltime*5);
+        let DEFPASS = Math.round(doSomethingWithInput(PASS));
         let ASISS = Math.round(usert1[0].assists/totaltime*140);
         let TACKLE = Math.round(usert1[0].tacklescompleted/usert1[0].tackles*100*4.5);
         let POSS = Math.round(usert1[0].possession*8);
@@ -650,6 +661,7 @@ function Card(){
         CONCEDED = (Math.round(doSomethingWithInput(CONCEDED)));
         
         PASS = (Math.round(doSomethingWithInput(PASS)));
+        DEFPASS = (Math.round(doSomethingWithInput(PASS)));
         ASISS = (Math.round(doSomethingWithInput(ASISS)));
         INTER = (Math.round(doSomethingWithInput(INTER)));
         POSS = (Math.round(doSomethingWithInput(POSS*0.97)));
@@ -660,7 +672,7 @@ function Card(){
         SAVEPERCENT = (Math.round(doSomethingWithInput(SAVEPERCENT)));
   
         const AFT1 = (FIN+PRE+ATTACKASISS)/3;
-        const ADT1 = INTER;
+        const ADT1 = (INTER+DEFPASS)/2;
         //const CCT1 = ((usert1[0].passescompleted+usert1[0].assists*10+usert1[0].possession*10)/totaltime)*2.05;
         const CCT1 = (PASS+ASISS+POSS)/3;
         const CPT1 = (SAVE+SAVEPERCENT+CONCEDED)/3;
@@ -722,6 +734,7 @@ function Card(){
         const totaltime = usert1[0].secondsplayed/60/90 > usert1[0].matches ? usert1[0].matches : usert1[0].secondsplayed/60/90;
 
         let PASS = Math.round(usert1[0].passescompleted/totaltime*5);
+        let DEFPASS = Math.round(doSomethingWithInput(PASS));
         let ASISS = Math.round(usert1[0].assists/totaltime*140);
         let TACKLE = Math.round(usert1[0].tacklescompleted/usert1[0].tackles*100*4.5);
         let POSS = Math.round(usert1[0].possession*8);
@@ -740,6 +753,7 @@ function Card(){
         CONCEDED = (Math.round(doSomethingWithInput(CONCEDED)));
         
         PASS = (Math.round(doSomethingWithInput(PASS)));
+        DEFPASS = (Math.round(doSomethingWithInput(PASS)));
         ASISS = (Math.round(doSomethingWithInput(ASISS)));
         INTER = (Math.round(doSomethingWithInput(INTER)));
         POSS = (Math.round(doSomethingWithInput(POSS*0.97)));
@@ -750,7 +764,7 @@ function Card(){
         SAVEPERCENT = (Math.round(doSomethingWithInput(SAVEPERCENT)));
   
         const AFT1 = (FIN+PRE+ATTACKASISS)/3;
-        const ADT1 = INTER;
+        const ADT1 = (INTER+DEFPASS)/2;
         //const CCT1 = ((usert1[0].passescompleted+usert1[0].assists*10+usert1[0].possession*10)/totaltime)*2.05;
         const CCT1 = (PASS+ASISS+POSS)/3;
         const CPT1 = (SAVE+SAVEPERCENT+CONCEDED)/3;
@@ -812,6 +826,7 @@ function Card(){
         const totaltime = usert1[0].secondsplayed/60/90 > usert1[0].matches ? usert1[0].matches : usert1[0].secondsplayed/60/90;
 
         let PASS = Math.round(usert1[0].passescompleted/totaltime*5);
+        let DEFPASS = Math.round(doSomethingWithInput(PASS));
         let ASISS = Math.round(usert1[0].assists/totaltime*140);
         let TACKLE = Math.round(usert1[0].tacklescompleted/usert1[0].tackles*100*4.5);
         let POSS = Math.round(usert1[0].possession*8);
@@ -830,6 +845,7 @@ function Card(){
         CONCEDED = (Math.round(doSomethingWithInput(CONCEDED)));
         
         PASS = (Math.round(doSomethingWithInput(PASS)));
+        DEFPASS = (Math.round(doSomethingWithInput(PASS)));
         ASISS = (Math.round(doSomethingWithInput(ASISS)));
         INTER = (Math.round(doSomethingWithInput(INTER)));
         POSS = (Math.round(doSomethingWithInput(POSS*0.97)));
@@ -840,7 +856,7 @@ function Card(){
         SAVEPERCENT = (Math.round(doSomethingWithInput(SAVEPERCENT)));
   
         const AFT1 = (FIN+PRE+ATTACKASISS)/3;
-        const ADT1 = INTER;
+        const ADT1 = (INTER+DEFPASS)/2;
         //const CCT1 = ((usert1[0].passescompleted+usert1[0].assists*10+usert1[0].possession*10)/totaltime)*2.05;
         const CCT1 = (PASS+ASISS+POSS)/3;
         const CPT1 = (SAVE+SAVEPERCENT+CONCEDED)/3;
@@ -901,6 +917,7 @@ function Card(){
         const totaltime = usert1[0].secondsplayed/60/90 > usert1[0].matches ? usert1[0].matches : usert1[0].secondsplayed/60/90;
 
         let PASS = Math.round(usert1[0].passescompleted/totaltime*5);
+        let DEFPASS = Math.round(doSomethingWithInput(PASS));
         let ASISS = Math.round(usert1[0].assists/totaltime*140);
         let TACKLE = Math.round(usert1[0].tacklescompleted/usert1[0].tackles*100*4.5);
         let POSS = Math.round(usert1[0].possession*8);
@@ -919,6 +936,7 @@ function Card(){
         CONCEDED = (Math.round(doSomethingWithInput(CONCEDED)));
         
         PASS = (Math.round(doSomethingWithInput(PASS)));
+        DEFPASS = (Math.round(doSomethingWithInput(PASS)));
         ASISS = (Math.round(doSomethingWithInput(ASISS)));
         INTER = (Math.round(doSomethingWithInput(INTER)));
         POSS = (Math.round(doSomethingWithInput(POSS*0.97)));
@@ -929,7 +947,7 @@ function Card(){
         SAVEPERCENT = (Math.round(doSomethingWithInput(SAVEPERCENT)));
   
         const AFT1 = (FIN+PRE+ATTACKASISS)/3;
-        const ADT1 = INTER;
+        const ADT1 = (INTER+DEFPASS)/2;
         //const CCT1 = ((usert1[0].passescompleted+usert1[0].assists*10+usert1[0].possession*10)/totaltime)*2.05;
         const CCT1 = (PASS+ASISS+POSS)/3;
         const CPT1 = (SAVE+SAVEPERCENT+CONCEDED)/3;
@@ -990,6 +1008,7 @@ function Card(){
         const totaltime = usert1[0].secondsplayed/60/90 > usert1[0].matches ? usert1[0].matches : usert1[0].secondsplayed/60/90;
 
         let PASS = Math.round(usert1[0].passescompleted/totaltime*5);
+        let DEFPASS = Math.round(doSomethingWithInput(PASS));
         let ASISS = Math.round(usert1[0].assists/totaltime*140);
         let TACKLE = Math.round(usert1[0].tacklescompleted/usert1[0].tackles*100*4.5);
         let POSS = Math.round(usert1[0].possession*8);
@@ -1008,6 +1027,7 @@ function Card(){
         CONCEDED = (Math.round(doSomethingWithInput(CONCEDED)));
         
         PASS = (Math.round(doSomethingWithInput(PASS)));
+        DEFPASS = (Math.round(doSomethingWithInput(PASS)));
         ASISS = (Math.round(doSomethingWithInput(ASISS)));
         INTER = (Math.round(doSomethingWithInput(INTER)));
         POSS = (Math.round(doSomethingWithInput(POSS*0.97)));
@@ -1018,7 +1038,7 @@ function Card(){
         SAVEPERCENT = (Math.round(doSomethingWithInput(SAVEPERCENT)));
   
         const AFT1 = (FIN+PRE+ATTACKASISS)/3;
-        const ADT1 = INTER;
+        const ADT1 = (INTER+DEFPASS)/2;
         //const CCT1 = ((usert1[0].passescompleted+usert1[0].assists*10+usert1[0].possession*10)/totaltime)*2.05;
         const CCT1 = (PASS+ASISS+POSS)/3;
         const CPT1 = (SAVE+SAVEPERCENT+CONCEDED)/3;
@@ -1079,6 +1099,7 @@ function Card(){
         const totaltime = usert1[0].secondsplayed/60/90 > usert1[0].matches ? usert1[0].matches : usert1[0].secondsplayed/60/90;
 
         let PASS = Math.round(usert1[0].passescompleted/totaltime*5);
+        let DEFPASS = Math.round(doSomethingWithInput(PASS));
         let ASISS = Math.round(usert1[0].assists/totaltime*140);
         let TACKLE = Math.round(usert1[0].tacklescompleted/usert1[0].tackles*100*4.5);
         let POSS = Math.round(usert1[0].possession*8);
@@ -1097,6 +1118,7 @@ function Card(){
         CONCEDED = (Math.round(doSomethingWithInput(CONCEDED)));
         
         PASS = (Math.round(doSomethingWithInput(PASS)));
+        DEFPASS = (Math.round(doSomethingWithInput(PASS)));
         ASISS = (Math.round(doSomethingWithInput(ASISS)));
         INTER = (Math.round(doSomethingWithInput(INTER)));
         POSS = (Math.round(doSomethingWithInput(POSS*0.97)));
@@ -1107,7 +1129,7 @@ function Card(){
         SAVEPERCENT = (Math.round(doSomethingWithInput(SAVEPERCENT)));
   
         const AFT1 = (FIN+PRE+ATTACKASISS)/3;
-        const ADT1 = INTER;
+        const ADT1 = (INTER+DEFPASS)/2;
         //const CCT1 = ((usert1[0].passescompleted+usert1[0].assists*10+usert1[0].possession*10)/totaltime)*2.05;
         const CCT1 = (PASS+ASISS+POSS)/3;
         const CPT1 = (SAVE+SAVEPERCENT+CONCEDED)/3;
@@ -1275,7 +1297,7 @@ function Card(){
                 <div className="player-card-position">{pos}</div>
                 <div className="player-card-ovr">{ovrtotal}</div>
                 <div className="player-card-name">{name}</div>
-                <img className="player-card-club-featured" src={require(`../images/clubs/${team.toString().toLowerCase()}.png`)}></img>
+                <img className="player-card-club-featured" src={require(`../images/clubs/${theteam.toString().toLowerCase()}.png`)}></img>
                 <img className="player-card-image-featured" src={require(`../images/cartas/${id}.png`)}></img>
               </div>
               <div className="top-info">
@@ -1563,6 +1585,10 @@ function Card(){
                         <tr>
                           <td className="stat_tier_3 stat" style={{backgroundColor: tacklescompleted/tackles*100 >= 25 ? '#02fec5': tacklescompleted/tackles*100 >= 20 && tacklescompleted/tackles*100 < 25 ? '#a8fe02' : tacklescompleted/tackles*100 >= 15 && tacklescompleted/tackles*100 < 20 ? '#fbb206' : 'red' }}>{Math.trunc(tacklescompleted/tackles*100)}%</td>
                           <td>Efectividad de Entradas</td>
+                        </tr>
+                        <tr>
+                          <td className="stat_tier_3 stat" style={{backgroundColor: defensepassavg >= 90 ? '#02fec5': defensepassavg >= 80 && defensepassavg < 90 ? '#a8fe02' : defensepassavg >= 70 && defensepassavg < 80 ? '#fbb206' : 'red' }}>{defensepassavg}</td>
+                          <td>Pasador</td>
                         </tr>
                       </tbody>
                     </table>

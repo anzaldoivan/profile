@@ -9,6 +9,25 @@ export const doSomethingWithInput = (theInput) => {
    let i = 1;
    let aux = 0;
 
+   if(theInput<50 || !theInput){
+    aux = 50
+     loop = false;
+   }
+   if(theInput>=100){
+    aux = 100 + (theInput * 0.021);
+     loop = false;
+   }
+   do {
+   if(theInput<(101-i) && theInput >= (100-i) ){
+    aux = theInput * multiplicador;
+       loop = false;
+   }else{
+       i++;
+       multiplicador += 0.004;
+   }
+   }while (loop==true);  
+
+   /*
    if(theInput<40 || !theInput){
     aux = 40
      loop = false;
@@ -26,6 +45,8 @@ export const doSomethingWithInput = (theInput) => {
        multiplicador += 0.004;
    }
    }while (loop==true);  
+   */
+
    theInput = aux;
    return theInput;
 };
