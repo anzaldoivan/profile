@@ -270,6 +270,9 @@ function Card(){
       const apiCallD = await fetch (`https://stats.iosoccer-sa.bid/api/player/${playerID}/t4`);
       const apiCallE = await fetch (`https://stats.iosoccer-sa.bid/api/player/${playerID}/t5`);
       const apiCallF = await fetch (`https://stats.iosoccer-sa.bid/api/player/${playerID}/t0`);
+      const apiCallG = await fetch (`https://stats.iosoccer-sa.bid/api/player/${playerID}/maradei`);
+      const apiCallH = await fetch (`https://stats.iosoccer-sa.bid/api/player/${playerID}/master`);
+      const apiCallI = await fetch (`https://stats.iosoccer-sa.bid/api/player/${playerID}/master`);
       const user = await apiCall.json();
       const userA = await apiCallA.json();
       const userB = await apiCallB.json();
@@ -277,7 +280,9 @@ function Card(){
       const userD = await apiCallD.json();
       const userE = await apiCallE.json();
       const userF = await apiCallF.json();
-
+      const userG = await apiCallG.json();
+      const userH = await apiCallH.json();
+      const userI = await apiCallI.json();
 
       const totaltimet1 = userA[0] != undefined? (userA[0].secondsplayed/60/90 > userA[0].matches ? userA[0].matches : userA[0].secondsplayed/60/90) : 0;
       console.log("El total time de la T1 es: "+totaltimet1);
@@ -290,7 +295,19 @@ function Card(){
       const totaltimet5 = userE[0] != undefined ? ( userE[0].secondsplayed/60/90 > userE[0].matches ? userE[0].matches : userE[0].secondsplayed/60/90 ) : 0;
       console.log("El total time de la T1 es: "+totaltimet5);
       const totaltimet0 = userF[0] != undefined ? ( userF[0].secondsplayed/60/90 > userF[0].matches ? userF[0].matches : userF[0].secondsplayed/60/90 ) : 0;
-      const actualtime = Math.round(totaltimet1+totaltimet2+totaltimet3+totaltimet4+totaltimet5+totaltimet0);
+      const totaltimemaradei = userG[0] != undefined ? ( userG[0].secondsplayed/60/90 > userG[0].matches ? userG[0].matches : userG[0].secondsplayed/60/90 ) : 0;
+      const totaltimemaster = userH[0] != undefined ? ( userH[0].secondsplayed/60/90 > userH[0].matches ? userH[0].matches : userH[0].secondsplayed/60/90 ) : 0;
+      const totaltimeamerica = userI[0] != undefined ? ( userI[0].secondsplayed/60/90 > userI[0].matches ? userI[0].matches : userI[0].secondsplayed/60/90 ) : 0;
+      const actualtime = tID == 'all' ? Math.round(totaltimet1+totaltimet2+totaltimet3+totaltimet4+totaltimet5+totaltimet0) 
+      : tID == 't1' ? totaltimet1 
+      : tID == 't2' ? totaltimet2 
+      : tID == 't3' ? totaltimet3 
+      : tID == 't4' ? totaltimet4 
+      : tID == 't5' ? totaltimet5
+      : tID == 'maradei' ? totaltimemaradei
+      : tID == 'master' ? totaltimemaster
+      : tID == 'copaamerica' ? totaltimeamerica
+      : totaltimet0;
 
       //call setName below to change the state 'name'
       // fetch inicial, por default agarra la playerID mia y la temporada es la de "all"
