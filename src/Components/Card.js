@@ -118,6 +118,8 @@ function Card(){
     team.toString().toLowerCase() == "merca doçura" ? "mds" :
     team.toString().toLowerCase() == "peñarol" ? "peñarol" :
     team.toString().toLowerCase() == "los angeles fc" ? "lafc" :
+    team.toString().toLowerCase() == "los magios" ? "lmg" :
+    team.toString().toLowerCase() == "Caballeros De La Birra" ? "lcb" :
     team.toString().toLowerCase() == "ac milanesa" ? "acm" : "0"
     ;
     const temporada = tID == 
@@ -1331,20 +1333,20 @@ function Card(){
         <div className="content-container">
           <div className="fw-container bg-dark"  style={{ backgroundImage: `url(` + require(`../images/banners/${theteam}.png`) + `)` , backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}>
             <div className="container-large flex top-container">
-              <div className="player-card player-card-shadow player-card-large bg-image2" style={{ backgroundImage: ovrtotal >= 90 ? `url(` + require(`../images/bg/0.png`) + `)`: ovrtotal >= 80 && ovrtotal < 90 ? `url(` + require(`../images/bg/03.png`) + `)` : ovrtotal >= 70 && ovrtotal < 80 ? `url(` + require(`../images/bg/05.png`) + `)` : `url(` + require(`../images/bg/05.png`) + `)`}}>
+              <div className="player-card player-card-shadow player-card-large bg-image2" style={{ backgroundImage: ovr >= 90 ? `url(` + require(`../images/bg/0.png`) + `)`: ovr >= 80 && ovr < 90 ? `url(` + require(`../images/bg/03.png`) + `)` : ovr >= 70 && ovr < 80 ? `url(` + require(`../images/bg/05.png`) + `)` : `url(` + require(`../images/bg/05.png`) + `)`}}>
                 <div className="player-card-position">{pos}</div>
-                <div className="player-card-ovr">{ovrtotal}</div>
+                <div className="player-card-ovr">{ovr}</div>
                 <div className="player-card-name">{name}</div>
                 <img className="player-card-club-featured" src={require(`../images/clubs/${theteam.toString().toLowerCase()}.png`)}></img>
                 <img className="player-card-image-featured" src={require(`../images/cartas/${id}.png`)}></img>
               </div>
               <div className="top-info">
                 <h1 className="top-header">
-                  <span className="ovr stat_tier_3" style={{backgroundColor: ovrtotal >= 90 ? '#02fec5': ovrtotal >= 80 && ovrtotal < 90 ? '#a8fe02' : ovrtotal >= 70 && ovrtotal < 80 ? '#fbb206' : 'red' }}>{ovrtotal}</span>
+                  <span className="ovr stat_tier_3" style={{backgroundColor: ovr >= 90 ? '#02fec5': ovr >= 80 && ovr < 90 ? '#a8fe02' : ovr >= 70 && ovr < 80 ? '#fbb206' : 'red' }}>{ovr}</span>
                   <span>&nbsp;</span>{name}
                 </h1>
                 <h2 className="subtle-text">{name} IOSoccer {temporada} Stats</h2>
-                <p className="description subtle-text">{name} es un futbolista con una media de {ovrtotal} en la posicion de {pos}. {name} es un jugador perteneciente al equipo {team} de IOSoccer.</p>
+                <p className="description subtle-text">{name} es un futbolista con una media de {ovr} en la posicion de {pos}. {name} es un jugador perteneciente al equipo {team} de IOSoccer.</p>
                 <div>
                   <ul className="versions-list">
                     <div>
