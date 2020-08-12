@@ -7,7 +7,6 @@ import RadarChart from 'react-svg-radar-chart';
 import 'react-svg-radar-chart/build/css/index.css';
 import '../App.css';
 
-
 // importamos AXIOS que nos sirve hacer los fetch con las API
 import axios from 'axios';
 
@@ -105,7 +104,7 @@ function Card(){
     console.log(totaltime);
     console.log(secondsplayed/60/90);
     console.log(matches);
-    
+
     // creamos la variable theteam para convertir el nombre del equipo a sus iniciales, y que de esta forma los banners sean visibles (se buguea si tiene espacios)
     const theteam = team.toString().toLowerCase() == 
     "meteors gaming" ? "mg" : 
@@ -285,15 +284,10 @@ function Card(){
       const userI = await apiCallI.json();
 
       const totaltimet1 = userA[0] != undefined? (userA[0].secondsplayed/60/90 > userA[0].matches ? userA[0].matches : userA[0].secondsplayed/60/90) : 0;
-      console.log("El total time de la T1 es: "+totaltimet1);
       const totaltimet2 = userB[0] != undefined? userB[0].secondsplayed/60/90 > userB[0].matches ? userB[0].matches : userB[0].secondsplayed/60/90 : 0;
-      console.log("El total time de la T2 es: "+totaltimet2);
       const totaltimet3 = userC[0] != undefined ? ( userC[0].secondsplayed/60/90 > userC[0].matches ? userC[0].matches : userC[0].secondsplayed/60/90 ) : 0;
-      console.log("El total time de la T3 es: "+totaltimet3);
       const totaltimet4 = userD[0] != undefined ? ( userD[0].secondsplayed/60/90 > userD[0].matches ? userD[0].matches : userD[0].secondsplayed/60/90 ) : 0;
-      console.log("El total time de la T4 es: "+ totaltimet4);
       const totaltimet5 = userE[0] != undefined ? ( userE[0].secondsplayed/60/90 > userE[0].matches ? userE[0].matches : userE[0].secondsplayed/60/90 ) : 0;
-      console.log("El total time de la T1 es: "+totaltimet5);
       const totaltimet0 = userF[0] != undefined ? ( userF[0].secondsplayed/60/90 > userF[0].matches ? userF[0].matches : userF[0].secondsplayed/60/90 ) : 0;
       const totaltimemaradei = userG[0] != undefined ? ( userG[0].secondsplayed/60/90 > userG[0].matches ? userG[0].matches : userG[0].secondsplayed/60/90 ) : 0;
       const totaltimemaster = userH[0] != undefined ? ( userH[0].secondsplayed/60/90 > userH[0].matches ? userH[0].matches : userH[0].secondsplayed/60/90 ) : 0;

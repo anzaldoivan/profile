@@ -13,12 +13,12 @@ export const doSomethingWithInput = (theInput) => {
     aux = 50
      loop = false;
    }
-   if(theInput>=100){
-    aux = 100 + (theInput * 0.021);
+   if(theInput>=90){
+    aux = 90 + (theInput * 0.021);
      loop = false;
    }
    do {
-   if(theInput<(101-i) && theInput >= (100-i) ){
+   if(theInput<(91-i) && theInput >= (90-i) ){
     aux = theInput * multiplicador;
        loop = false;
    }else{
@@ -90,4 +90,3 @@ export const steamid_to_64bit = (steamID) => {
     
     return converted;
 };
-
