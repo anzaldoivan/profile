@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/profile/static/css/main.e22f2491.chunk.css",
-    "main.js": "/profile/static/js/main.08ff196d.chunk.js",
-    "main.js.map": "/profile/static/js/main.08ff196d.chunk.js.map",
+    "main.js": "/profile/static/js/main.caeb79c2.chunk.js",
+    "main.js.map": "/profile/static/js/main.caeb79c2.chunk.js.map",
     "runtime-main.js": "/profile/static/js/runtime-main.e1e65ed2.js",
     "runtime-main.js.map": "/profile/static/js/runtime-main.e1e65ed2.js.map",
     "static/css/2.9c14e806.chunk.css": "/profile/static/css/2.9c14e806.chunk.css",
-    "static/js/2.e51964e2.chunk.js": "/profile/static/js/2.e51964e2.chunk.js",
-    "static/js/2.e51964e2.chunk.js.map": "/profile/static/js/2.e51964e2.chunk.js.map",
+    "static/js/2.0f1be55f.chunk.js": "/profile/static/js/2.0f1be55f.chunk.js",
+    "static/js/2.0f1be55f.chunk.js.map": "/profile/static/js/2.0f1be55f.chunk.js.map",
     "index.html": "/profile/index.html",
-    "precache-manifest.82226e4873a5c99f37ae7caa5e361625.js": "/profile/precache-manifest.82226e4873a5c99f37ae7caa5e361625.js",
+    "precache-manifest.1329ad495226b102f456c8c012e9f754.js": "/profile/precache-manifest.1329ad495226b102f456c8c012e9f754.js",
     "service-worker.js": "/profile/service-worker.js",
     "static/css/2.9c14e806.chunk.css.map": "/profile/static/css/2.9c14e806.chunk.css.map",
     "static/css/main.e22f2491.chunk.css.map": "/profile/static/css/main.e22f2491.chunk.css.map",
-    "static/js/2.e51964e2.chunk.js.LICENSE.txt": "/profile/static/js/2.e51964e2.chunk.js.LICENSE.txt",
+    "static/js/2.0f1be55f.chunk.js.LICENSE.txt": "/profile/static/js/2.0f1be55f.chunk.js.LICENSE.txt",
     "static/media/0.png": "/profile/static/media/0.e2eefe35.png",
     "static/media/03.png": "/profile/static/media/03.563377e9.png",
     "static/media/05.png": "/profile/static/media/05.cea8ddf0.png",
@@ -191,6 +191,7 @@
     "static/media/lmg.png": "/profile/static/media/lmg.af4bd46f.png",
     "static/media/logo-iossa-black.png": "/profile/static/media/logo-iossa-black.99f3be65.png",
     "static/media/los halcones.png": "/profile/static/media/los halcones.9ebf4a20.png",
+    "static/media/los magios.png": "/profile/static/media/los magios.af4bd46f.png",
     "static/media/los magorditos.png": "/profile/static/media/los magorditos.ea8dc5a9.png",
     "static/media/mago.png": "/profile/static/media/mago.767c7ab8.png",
     "static/media/mcfc.png": "/profile/static/media/mcfc.c39392b3.png",
@@ -243,8 +244,8 @@
   "entrypoints": [
     "static/js/runtime-main.e1e65ed2.js",
     "static/css/2.9c14e806.chunk.css",
-    "static/js/2.e51964e2.chunk.js",
+    "static/js/2.0f1be55f.chunk.js",
     "static/css/main.e22f2491.chunk.css",
-    "static/js/main.08ff196d.chunk.js"
+    "static/js/main.caeb79c2.chunk.js"
   ]
 }
