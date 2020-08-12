@@ -1517,7 +1517,7 @@ function Card(){
                       <li className="versions-list-el">
                       <span className="stat stat_tier_2" style={{backgroundColor: t6 >= 90 ? '#02fec5': t6 >= 80 && t6 < 90 ? '#a8fe02' : t6 >= 70 && t6 < 80 ? '#fbb206' : 'red' }}>
                       {t6}</span>
-                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${t5team.toString().toLowerCase()}.png`)} title={t6team} />
+                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${t6team.toString().toLowerCase()}.png`)} title={t6team} />
                       <span className="game">
                       Temporada 6</span>
                       </li>
