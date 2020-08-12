@@ -13,12 +13,12 @@ export const doSomethingWithInput = (theInput) => {
     aux = 50
      loop = false;
    }
-   if(theInput>=90){
-    aux = 90 + (theInput * 0.021);
+   if(theInput>=92){
+    aux = 92 + (theInput * 0.021);
      loop = false;
    }
    do {
-   if(theInput<(91-i) && theInput >= (90-i) ){
+   if(theInput<(93-i) && theInput >= (92-i) ){
     aux = theInput * multiplicador;
        loop = false;
    }else{
