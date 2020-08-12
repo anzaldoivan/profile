@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/profile/static/css/main.e22f2491.chunk.css",
-    "main.js": "/profile/static/js/main.caeb79c2.chunk.js",
-    "main.js.map": "/profile/static/js/main.caeb79c2.chunk.js.map",
+    "main.js": "/profile/static/js/main.e31cd9f3.chunk.js",
+    "main.js.map": "/profile/static/js/main.e31cd9f3.chunk.js.map",
     "runtime-main.js": "/profile/static/js/runtime-main.e1e65ed2.js",
     "runtime-main.js.map": "/profile/static/js/runtime-main.e1e65ed2.js.map",
     "static/css/2.9c14e806.chunk.css": "/profile/static/css/2.9c14e806.chunk.css",
-    "static/js/2.0f1be55f.chunk.js": "/profile/static/js/2.0f1be55f.chunk.js",
-    "static/js/2.0f1be55f.chunk.js.map": "/profile/static/js/2.0f1be55f.chunk.js.map",
+    "static/js/2.88b1fa72.chunk.js": "/profile/static/js/2.88b1fa72.chunk.js",
+    "static/js/2.88b1fa72.chunk.js.map": "/profile/static/js/2.88b1fa72.chunk.js.map",
     "index.html": "/profile/index.html",
-    "precache-manifest.1329ad495226b102f456c8c012e9f754.js": "/profile/precache-manifest.1329ad495226b102f456c8c012e9f754.js",
+    "precache-manifest.a2d5c0b8d8f83cdcc7ec53e8053c087e.js": "/profile/precache-manifest.a2d5c0b8d8f83cdcc7ec53e8053c087e.js",
     "service-worker.js": "/profile/service-worker.js",
     "static/css/2.9c14e806.chunk.css.map": "/profile/static/css/2.9c14e806.chunk.css.map",
     "static/css/main.e22f2491.chunk.css.map": "/profile/static/css/main.e22f2491.chunk.css.map",
-    "static/js/2.0f1be55f.chunk.js.LICENSE.txt": "/profile/static/js/2.0f1be55f.chunk.js.LICENSE.txt",
+    "static/js/2.88b1fa72.chunk.js.LICENSE.txt": "/profile/static/js/2.88b1fa72.chunk.js.LICENSE.txt",
     "static/media/0.png": "/profile/static/media/0.e2eefe35.png",
     "static/media/03.png": "/profile/static/media/03.563377e9.png",
     "static/media/05.png": "/profile/static/media/05.cea8ddf0.png",
@@ -164,6 +164,7 @@
     "static/media/defensores del bidon.png": "/profile/static/media/defensores del bidon.8c9b37d7.png",
     "static/media/defensores del doctor.png": "/profile/static/media/defensores del doctor.163592f1.png",
     "static/media/deportivo empate.png": "/profile/static/media/deportivo empate.70378364.png",
+    "static/media/dream seven.png": "/profile/static/media/dream seven.ea271385.png",
     "static/media/ecpg.png": "/profile/static/media/ecpg.7c208886.png",
     "static/media/fdfc.png": "/profile/static/media/fdfc.7ac4a40e.png",
     "static/media/ffc.png": "/profile/static/media/ffc.f093303c.png",
@@ -244,8 +245,8 @@
   "entrypoints": [
     "static/js/runtime-main.e1e65ed2.js",
     "static/css/2.9c14e806.chunk.css",
-    "static/js/2.0f1be55f.chunk.js",
+    "static/js/2.88b1fa72.chunk.js",
     "static/css/main.e22f2491.chunk.css",
-    "static/js/main.caeb79c2.chunk.js"
+    "static/js/main.e31cd9f3.chunk.js"
   ]
 }
