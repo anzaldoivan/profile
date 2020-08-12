@@ -264,7 +264,34 @@ function Card(){
 
     const fetchUser = async () => {
       const apiCall = await fetch (`https://stats.iosoccer-sa.bid/api/player/${playerID}/${tID}`);
+      const apiCallA = await fetch (`https://stats.iosoccer-sa.bid/api/player/${playerID}/t1`);
+      const apiCallB = await fetch (`https://stats.iosoccer-sa.bid/api/player/${playerID}/t2`);
+      const apiCallC = await fetch (`https://stats.iosoccer-sa.bid/api/player/${playerID}/t3`);
+      const apiCallD = await fetch (`https://stats.iosoccer-sa.bid/api/player/${playerID}/t4`);
+      const apiCallE = await fetch (`https://stats.iosoccer-sa.bid/api/player/${playerID}/t5`);
+      const apiCallF = await fetch (`https://stats.iosoccer-sa.bid/api/player/${playerID}/t0`);
       const user = await apiCall.json();
+      const userA = await apiCallA.json();
+      const userB = await apiCallB.json();
+      const userC = await apiCallC.json();
+      const userD = await apiCallD.json();
+      const userE = await apiCallE.json();
+      const userF = await apiCallF.json();
+
+
+      const totaltimet1 = userA[0] != undefined? (userA[0].secondsplayed/60/90 > userA[0].matches ? userA[0].matches : userA[0].secondsplayed/60/90) : 0;
+      console.log("El total time de la T1 es: "+totaltimet1);
+      const totaltimet2 = userB[0] != undefined? userB[0].secondsplayed/60/90 > userB[0].matches ? userB[0].matches : userB[0].secondsplayed/60/90 : 0;
+      console.log("El total time de la T2 es: "+totaltimet2);
+      const totaltimet3 = userC[0] != undefined ? ( userC[0].secondsplayed/60/90 > userC[0].matches ? userC[0].matches : userC[0].secondsplayed/60/90 ) : 0;
+      console.log("El total time de la T3 es: "+totaltimet3);
+      const totaltimet4 = userD[0] != undefined ? ( userD[0].secondsplayed/60/90 > userD[0].matches ? userD[0].matches : userD[0].secondsplayed/60/90 ) : 0;
+      console.log("El total time de la T4 es: "+ totaltimet4);
+      const totaltimet5 = userE[0] != undefined ? ( userE[0].secondsplayed/60/90 > userE[0].matches ? userE[0].matches : userE[0].secondsplayed/60/90 ) : 0;
+      console.log("El total time de la T1 es: "+totaltimet5);
+      const totaltimet0 = userF[0] != undefined ? ( userF[0].secondsplayed/60/90 > userF[0].matches ? userF[0].matches : userF[0].secondsplayed/60/90 ) : 0;
+      const actualtime = Math.round(totaltimet1+totaltimet2+totaltimet3+totaltimet4+totaltimet5+totaltimet0);
+
       //call setName below to change the state 'name'
       // fetch inicial, por default agarra la playerID mia y la temporada es la de "all"
       setName(user[0].name);
@@ -289,7 +316,7 @@ function Card(){
 
       setId(steamid_to_64bit(playerID));
       document.title = user[0].name;
-      const actualtime = user[0].secondsplayed/60/90 > user[0].matches ? user[0].matches : user[0].secondsplayed/60/90;
+      //const actualtime = user[0].secondsplayed/60/90 > user[0].matches ? user[0].matches : user[0].secondsplayed/60/90;
       const PASS = Math.round(user[0].passescompleted/actualtime*5);
       const DEFPASS = Math.round(doSomethingWithInput(PASS));
       const ASISS = Math.round(user[0].assists/actualtime*140);
