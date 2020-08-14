@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import {doSomethingWithInput, justAnAlert, steamid_to_64bit, getSeason,getTeam, getBanner} from './Util.js'
+import {doSomethingWithInput, justAnAlert, steamid_to_64bit, getSeason, getTeam} from './Util.js'
+import {getBanner} from './Util.js'
 import html2canvas from "html2canvas";
 import { saveAs } from 'file-saver';
 
