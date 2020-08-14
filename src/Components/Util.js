@@ -137,13 +137,20 @@ export const getSeason = (tID) => {
     theteam == "merca doçura" ? theteam = "mds" :
     theteam == "modo diablo" ? theteam = "md" :
     theteam == "musashi fc" ? theteam = "mcfc" :
+    theteam == "nankatsu" ? theteam = "nsc" :
     theteam == "peñarol" ? theteam = "peñarol" :
     theteam == "painters united" ? theteam = "pufc" :
     theteam == "puro humo" ? theteam = "ph" :
     theteam == "real mandril" ? theteam = "rm" :
+    theteam == "santa ana" ? theteam = "safc" :
+    theteam == "stargazing fc" ? theteam = "sgfc" :
+    theteam == "underdogs united" ? theteam = "udu" :
+    theteam == "uruguay" ? theteam = "uru" :
     theteam == "velez sarsfield" ? theteam = "velez" :
     theteam == "viral team" ? theteam = "viral" :
+    theteam == "vorpal swords" ? theteam = "vs" :
     theteam == "xsn" ? theteam = "xsn" :
+    theteam == "xt" ? theteam = "xt" :
     theteam = "0";
     return theteam;
  };

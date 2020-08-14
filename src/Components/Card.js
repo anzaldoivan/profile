@@ -91,6 +91,7 @@ function Card(){
     const [t4team, setT4team] = useState(0);
     const [t5team, setT5team] = useState(0);
     const [t6team, setT6team] = useState(0);
+    const [banner, setBanner] = useState(0);
     
     const players = require("./players.json");
     const torneos = require("./torneos.json");
@@ -290,6 +291,7 @@ function Card(){
       // fetch inicial, por default agarra la playerID mia y la temporada es la de "all"
       setName(user[0].name);
       setTeam(user[0].team);
+      setBanner(getBanner(user[0].team));
       setMatches(user[0].matches);
       setGoals(user[0].goals);
       setAssists(user[0].assists);
@@ -1447,7 +1449,7 @@ function Card(){
     return(
       <div>
         <div className="content-container">
-          <div className="fw-container bg-dark"  style={{ backgroundImage: `url(` + require(`../images/banners/${getBanner(team)}.png`) + `)` , backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}>
+          <div className="fw-container bg-dark"  style={{ backgroundImage: `url(` + require(`../images/banners/${banner}.png`) + `)` , backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}>
             <div className="container-large flex top-container"> 
               <div id="ThePlayerCard" className="player-card player-card-shadow player-card-large bg-image2" style={{ backgroundImage: ovr >= 90 ? `url(` + require(`../images/bg/0.png`) + `)`: ovr >= 80 && ovr < 90 ? `url(` + require(`../images/bg/03.png`) + `)` : ovr >= 70 && ovr < 80 ? `url(` + require(`../images/bg/05.png`) + `)` : `url(` + require(`../images/bg/05.png`) + `)`}} onClick={printPDF}>
                 <div className="player-card-position">{pos}</div>
