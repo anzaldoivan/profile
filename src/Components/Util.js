@@ -14,7 +14,7 @@ export const doSomethingWithInput = (theInput) => {
      loop = false;
    }
    if(theInput>=92){
-    aux = 92 + (theInput * 0.021);
+    aux = 92 + (theInput * 0.042);
      loop = false;
    }
    do {
