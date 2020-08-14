@@ -290,7 +290,7 @@ function Card(){
       //call setName below to change the state 'name'
       // fetch inicial, por default agarra la playerID mia y la temporada es la de "all"
       setName(user[0].name);
-      setTeam(user[0].team);
+      setTeam(getTeam(user[0].team));
       setBanner(getBanner(user[0].team));
       setMatches(user[0].matches);
       setGoals(user[0].goals);
@@ -475,7 +475,7 @@ function Card(){
         ovrt1=Math.trunc(CPT1);
       }
       setT1(ovrt1);
-      setT1team(usert1[0].team);
+      setT1team(getTeam(usert1[0].team));
       setT1real(true);
       }else{
         setT1real(false);
@@ -569,7 +569,7 @@ function Card(){
         ovrt1=Math.trunc(CPT1);
       }
       setT2(ovrt1);
-      setT2team(usert1[0].team);
+      setT2team(getTeam(usert1[0].team));
       setT2real(true)
       }else{
         setT2real(false)
@@ -663,7 +663,7 @@ function Card(){
           ovrt1=Math.trunc(CPT1);
         }
         setT3(ovrt1);
-        setT3team(usert1[0].team);
+        setT3team(getTeam(usert1[0].team));
         setT3real(true)
       }else{
         setT3real(false)
@@ -757,7 +757,7 @@ function Card(){
           ovrt1=Math.trunc(CPT1);
         }
         setT4(ovrt1);
-        setT4team(usert1[0].team);
+        setT4team(getTeam(usert1[0].team));
         setActualovr(ovrt1);
         setT4real(true)
       }else{
@@ -852,7 +852,7 @@ function Card(){
           ovrt1=Math.trunc(CPT1);
         }
         setT5(ovrt1);
-        setT5team(usert1[0].team);
+        setT5team(getTeam(usert1[0].team));
         setActualovr(ovrt1);
         setT5real(true)
       }else{
@@ -947,7 +947,7 @@ function Card(){
           ovrt1=Math.trunc(CPT1);
         }
         setT0(ovrt1);
-        setT0team(usert1[0].team);
+        setT0team(getTeam(usert1[0].team));
         setT0real(true)
       }else{
         setT0real(false)
@@ -1041,7 +1041,7 @@ function Card(){
           ovrt1=Math.trunc(CPT1);
         }
         setT6(ovrt1);
-        setT6team(usert1[0].team);
+        setT6team(getTeam(usert1[0].team));
         setT6real(true)
       }else{
         setT6real(false)
@@ -1135,7 +1135,7 @@ function Card(){
           ovrt1=Math.trunc(CPT1);
         }
         setMaradei(ovrt1);
-        setMaradeiteam(usert1[0].team);
+        setMaradeiteam(getTeam(usert1[0].team));
         setMaradeireal(true)
       }else{
         setMaradeireal(false)
@@ -1229,7 +1229,7 @@ function Card(){
           ovrt1=Math.trunc(CPT1);
         }
         setMaster(ovrt1);
-        setMasterteam(usert1[0].team);
+        setMasterteam(getTeam(usert1[0].team));
         setMasterreal(true)
       }else{
         setMasterreal(false)
@@ -1323,7 +1323,7 @@ function Card(){
           ovrt1=Math.trunc(CPT1);
         }
         setAmerica(ovrt1);
-        setAmericateam(usert1[0].team);
+        setAmericateam(getTeam(usert1[0].team));
         setAmericareal(true);
       }else{
         setAmericareal(false);
@@ -1455,7 +1455,7 @@ function Card(){
                 <div className="player-card-position">{pos}</div>
                 <div className="player-card-ovr">{ovr}</div>
                 <div className="player-card-name">{name}</div>
-                <img className="player-card-club-featured" src={require(`../images/clubs/${getTeam(team)}.png`)}></img>
+                <img className="player-card-club-featured" src={require(`../images/clubs/${team}.png`)}></img>
                 <img className="player-card-image-featured" src={require(`../images/cartas/${id}.png`)}></img>
               </div>
               <div className="top-info">
@@ -1472,7 +1472,7 @@ function Card(){
                       <li className="versions-list-el">
                       <span className="stat stat_tier_2" style={{backgroundColor: t0 >= 90 ? '#02fec5': t0 >= 80 && t0 < 90 ? '#a8fe02' : t0 >= 70 && t0 < 80 ? '#fbb206' : 'red' }}>
                       {t0}</span>
-                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${getTeam(t0team)}.png`)} title={t0team} />
+                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${t0team}.png`)} title={t0team} />
                       <span className="game">
                       Temporada 0</span>
                       </li>
@@ -1483,7 +1483,7 @@ function Card(){
                       <li className="versions-list-el">
                       <span className="stat stat_tier_2" style={{backgroundColor: t1 >= 90 ? '#02fec5': t1 >= 80 && t1 < 90 ? '#a8fe02' : t1 >= 70 && t1 < 80 ? '#fbb206' : 'red' }}>
                       {t1}</span>
-                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${getTeam(t1team)}.png`)} title={t1team} />
+                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${t1team}.png`)} title={t1team} />
                       <span className="game">
                       Temporada 1</span>
                       </li>
@@ -1494,7 +1494,7 @@ function Card(){
                       <li className="versions-list-el">
                       <span className="stat stat_tier_2" style={{backgroundColor: t2 >= 90 ? '#02fec5': t2 >= 80 && t2 < 90 ? '#a8fe02' : t2 >= 70 && t2 < 80 ? '#fbb206' : 'red' }}>
                       {t2}</span>
-                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${getTeam(t2team)}.png`)} title={t2team} />
+                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${t2team}.png`)} title={t2team} />
                       <span className="game">
                       Temporada 2</span>
                       </li>
@@ -1505,7 +1505,7 @@ function Card(){
                       <li className="versions-list-el">
                       <span className="stat stat_tier_2" style={{backgroundColor: t3 >= 90 ? '#02fec5': t3 >= 80 && t3 < 90 ? '#a8fe02' : t3 >= 70 && t3 < 80 ? '#fbb206' : 'red' }}>
                       {t3}</span>
-                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${getTeam(t3team)}.png`)} title={t3team} />
+                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${t3team}.png`)} title={t3team} />
                       <span className="game">
                       Temporada 3</span>
                       </li>
@@ -1514,7 +1514,7 @@ function Card(){
                     <div>
                       {t4real ? <button className="abutton" onClick={r => setTID(String("t4")) && setActualovr(t4)}> <li className="versions-list-el"> <span className="stat stat_tier_2" style={{backgroundColor: t4 >= 90 ? '#02fec5': t4 >= 80 && t4 < 90 ? '#a8fe02' : t4 >= 70 && t4 < 80 ? '#fbb206' : 'red' }}>
                       {t4}</span>
-                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${getTeam(t4team)}.png`)} title={t4team} />
+                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${t4team}.png`)} title={t4team} />
                       <span className="game">
                       Temporada 4</span> </li> </button>: null}
                     </div>
@@ -1523,7 +1523,7 @@ function Card(){
                       <li className="versions-list-el">
                       <span className="stat stat_tier_2" style={{backgroundColor: t5 >= 90 ? '#02fec5': t5 >= 80 && t5 < 90 ? '#a8fe02' : t5 >= 70 && t5 < 80 ? '#fbb206' : 'red' }}>
                       {t5}</span>
-                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${getTeam(t5team)}.png`)} title={t5team} />
+                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${t5team}.png`)} title={t5team} />
                       <span className="game">
                       Temporada 5</span>
                       </li>
@@ -1534,7 +1534,7 @@ function Card(){
                       <li className="versions-list-el">
                       <span className="stat stat_tier_2" style={{backgroundColor: t6 >= 90 ? '#02fec5': t6 >= 80 && t6 < 90 ? '#a8fe02' : t6 >= 70 && t6 < 80 ? '#fbb206' : 'red' }}>
                       {t6}</span>
-                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${getTeam(t6team)}.png`)} title={t6team} />
+                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${t6team}.png`)} title={t6team} />
                       <span className="game">
                       Temporada 6</span>
                       </li>
@@ -1546,7 +1546,7 @@ function Card(){
                       <li className="versions-list-el">
                       <span className="stat stat_tier_2" style={{backgroundColor: maradei >= 90 ? '#02fec5': maradei >= 80 && maradei < 90 ? '#a8fe02' : maradei >= 70 && maradei < 80 ? '#fbb206' : 'red' }}>
                       {maradei}</span>
-                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${getTeam(maradeiteam)}.png`)} title={maradeiteam} />
+                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${maradeiteam}.png`)} title={maradeiteam} />
                       <span className="game">
                       Copa Maradei</span>
                       </li>
@@ -1557,7 +1557,7 @@ function Card(){
                       <li className="versions-list-el">
                       <span className="stat stat_tier_2" style={{backgroundColor: master >= 90 ? '#02fec5': master >= 80 && master < 90 ? '#a8fe02' : master >= 70 && master < 80 ? '#fbb206' : 'red' }}>
                       {master}</span>
-                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${getTeam(masterteam)}.png`)} title={masterteam} />
+                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${masterteam}.png`)} title={masterteam} />
                       <span className="game">
                       Copa Master</span>
                       </li>
@@ -1568,7 +1568,7 @@ function Card(){
                       <li className="versions-list-el">
                       <span className="stat stat_tier_2" style={{backgroundColor: america >= 90 ? '#02fec5': america >= 80 && america < 90 ? '#a8fe02' : america >= 70 && america < 80 ? '#fbb206' : 'red' }}>
                       {america}</span>
-                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${getTeam(americateam)}.png`)} title={americateam} />
+                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${americateam}.png`)} title={americateam} />
                       <span className="game">
                       Copa America</span>
                       </li>
