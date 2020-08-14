@@ -80,7 +80,7 @@ function Card(){
     const [master, setMaster] = useState(0);
     const [maradeireal, setMaradeireal] = useState(true);
     const [masterreal, setMasterreal] = useState(true);
-    const [americareal, setAmericareal] = useState(true);
+    const [americareal, setAmericareal] = useState(false);
     const [maradeiteam, setMaradeiteam] = useState(0);
     const [masterteam, setMasterteam] = useState(0);
     const [americateam, setAmericateam] = useState(0);
@@ -322,13 +322,15 @@ function Card(){
       const FIN = Math.round(user[0].goals/actualtime*70);
       const PRE = Math.round((user[0].shotsontarget/user[0].shots*100));
       const SAVEPERCENT = Math.round((user[0].savescaught/user[0].saves)*110);
+      console.log("SAVE PERCENT VIEJO / SAVE NUEVO / SAVE MULTIPLICADO: "+(doSomethingWithInput(SAVEPERCENT))+" / "+(SAVEPERCENT/actualtime)+" / "+SAVEPERCENT);
       const ATASISS = Math.round(doSomethingWithInput(ASISS));
       const SAVE = Math.round((user[0].saves/actualtime*11));
       let SAVES = user[0].saves;
       if(SAVES==0){
         SAVES=1;
       }
-      const CONCEDED = Math.abs(((user[0].goalsconceded-user[0].saves)/SAVES*100)*1.5);
+      //const CONCEDED = Math.abs(((user[0].goalsconceded-user[0].saves)/SAVES*100)*1.5);
+      const CONCEDED = Math.abs((1-(user[0].goalsconceded/SAVES))*130);
       const SACRIFICIO = Math.abs((user[0].distancecovered * (100-(user[0].possession/(actualtime/user[0].matches)))) / 7000);
       
       setFinavg(Math.round(doSomethingWithInput(FIN)));
@@ -407,7 +409,7 @@ function Card(){
       if(SAVES==0){
         SAVES=1;
       }
-      let CONCEDED = Math.abs(((usert1[0].goalsconceded-usert1[0].saves)/SAVES*100)*1.5);
+      let CONCEDED = Math.abs((1-(usert1[0].goalsconceded/SAVES))*130);
       
       PASS = (Math.round(doSomethingWithInput(PASS)));
       DEFPASS = (Math.round(doSomethingWithInput(PASS)));
@@ -499,7 +501,7 @@ function Card(){
       if(SAVES==0){
         SAVES=1;
       }
-      let CONCEDED = Math.abs(((usert1[0].goalsconceded-usert1[0].saves)/SAVES*100)*1.5);
+      let CONCEDED = Math.abs((1-(usert1[0].goalsconceded/SAVES))*130);
 
       CONCEDED = (Math.round(doSomethingWithInput(CONCEDED)));
       PASS = (Math.round(doSomethingWithInput(PASS)));
@@ -591,7 +593,7 @@ function Card(){
         if(SAVES==0){
           SAVES=1;
         }
-        let CONCEDED = Math.abs(((usert1[0].goalsconceded-usert1[0].saves)/SAVES*100)*1.5);
+        let CONCEDED = Math.abs((1-(usert1[0].goalsconceded/SAVES))*130);
         CONCEDED = (Math.round(doSomethingWithInput(CONCEDED)));
         
         PASS = (Math.round(doSomethingWithInput(PASS)));
@@ -683,7 +685,7 @@ function Card(){
         if(SAVES==0){
           SAVES=1;
         }
-        let CONCEDED = Math.abs(((usert1[0].goalsconceded-usert1[0].saves)/SAVES*100)*1.5);
+        let CONCEDED = Math.abs((1-(usert1[0].goalsconceded/SAVES))*130);
         CONCEDED = (Math.round(doSomethingWithInput(CONCEDED)));
         
         PASS = (Math.round(doSomethingWithInput(PASS)));
@@ -776,7 +778,7 @@ function Card(){
         if(SAVES==0){
           SAVES=1;
         }
-        let CONCEDED = Math.abs(((usert1[0].goalsconceded-usert1[0].saves)/SAVES*100)*1.5);
+        let CONCEDED = Math.abs((1-(usert1[0].goalsconceded/SAVES))*130);
         CONCEDED = (Math.round(doSomethingWithInput(CONCEDED)));
         
         PASS = (Math.round(doSomethingWithInput(PASS)));
@@ -869,7 +871,7 @@ function Card(){
         if(SAVES==0){
           SAVES=1;
         }
-        let CONCEDED = Math.abs(((usert1[0].goalsconceded-usert1[0].saves)/SAVES*100)*1.5);
+        let CONCEDED = Math.abs((1-(usert1[0].goalsconceded/SAVES))*130);
         CONCEDED = (Math.round(doSomethingWithInput(CONCEDED)));
         
         PASS = (Math.round(doSomethingWithInput(PASS)));
@@ -961,7 +963,7 @@ function Card(){
         if(SAVES==0){
           SAVES=1;
         }
-        let CONCEDED = Math.abs(((usert1[0].goalsconceded-usert1[0].saves)/SAVES*100)*1.5);
+        let CONCEDED = Math.abs((1-(usert1[0].goalsconceded/SAVES))*130);
         CONCEDED = (Math.round(doSomethingWithInput(CONCEDED)));
         
         PASS = (Math.round(doSomethingWithInput(PASS)));
@@ -1053,7 +1055,7 @@ function Card(){
         if(SAVES==0){
           SAVES=1;
         }
-        let CONCEDED = Math.abs(((usert1[0].goalsconceded-usert1[0].saves)/SAVES*100)*1.5);
+        let CONCEDED = Math.abs((1-(usert1[0].goalsconceded/SAVES))*130);
         CONCEDED = (Math.round(doSomethingWithInput(CONCEDED)));
         
         PASS = (Math.round(doSomethingWithInput(PASS)));
@@ -1145,7 +1147,7 @@ function Card(){
         if(SAVES==0){
           SAVES=1;
         }
-        let CONCEDED = Math.abs(((usert1[0].goalsconceded-usert1[0].saves)/SAVES*100)*1.5);
+        let CONCEDED = Math.abs((1-(usert1[0].goalsconceded/SAVES))*130);
         CONCEDED = (Math.round(doSomethingWithInput(CONCEDED)));
         
         PASS = (Math.round(doSomethingWithInput(PASS)));
@@ -1211,7 +1213,7 @@ function Card(){
       }
     }
     
-    const fetchamerica = async () => {
+    /*const fetchamerica = async () => {
       const apiCallt1 = await fetch (`https://stats.iosoccer-sa.bid/api/player/${playerID}/copaamerica`);
       const usert1 = await apiCallt1.json();
       //call setName below to change the state 'name'
@@ -1301,7 +1303,7 @@ function Card(){
       }else{
         setAmericareal(false)
       }
-    }
+    }*/
 
     useEffect(() => {
       fetchUser();
@@ -1315,7 +1317,7 @@ function Card(){
       fetcht0();
       fetchmaradei();
       fetchmaster();
-      fetchamerica();
+      //fetchamerica();
     }, [playerID])
     
     useEffect(() => {
@@ -1330,7 +1332,7 @@ function Card(){
       fetcht0();
       fetchmaradei();
       fetchmaster();
-      fetchamerica();
+      //fetchamerica();
     }, [tID])
 
     const data = [
