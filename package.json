@@ -14,7 +14,7 @@
     "faker": "^4.1.0",
     "file-saver": "^2.0.2",
     "html2canvas": "^1.0.0-rc.7",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.17",
