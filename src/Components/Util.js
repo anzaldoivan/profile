@@ -90,3 +90,74 @@ export const steamid_to_64bit = (steamID) => {
     
     return converted;
 };
+
+export const getSeason = (tID) => {
+    let aux;
+    tID == "t1" ? aux = "Temporada 1" : 
+    tID == "master" ? aux = "Copa Master" : 
+    tID == "t2" ? aux = "Temporada 2" : 
+    tID == "t3" ? aux = "Temporada 3" : 
+    tID == "t4" ? aux = "Temporada 4" :
+    tID == "t0" ? aux = "Temporada 0" :
+    tID == "t5" ? aux = "Temporada 5" :
+    tID == "t6" ? aux = "Temporada 6" :
+    tID == "maradei" ? aux = "Copa Maradei" : 
+    tID == "copaamerica" ? aux = "Copa America" :
+     aux = "Total";
+     tID = aux;
+    return tID;
+ };
+
+ export const getTeam = (team) => {
+    let theteam = team.toString().toLowerCase();
+    theteam == "TEST" ? theteam = "TEST" :
+    theteam == "ac milanesa" ? theteam = "acm" : 
+    theteam == "afc academia" ? theteam = "afca" :
+    theteam == "bravona" ? theteam = "bv" :
+    theteam == "caballeros de la birra" ? theteam = "lcb" :
+    theteam == "chicago me limpio" ? theteam = "cml" :
+    theteam == "coldchester fc" ? theteam = "ccfc" : 
+    theteam == "cualidachi f.c" ? theteam = "cacfc" :
+    theteam == "dream seven" ? theteam = "d7" :
+    theteam == "defensores del doctor" ? theteam = "cadd" :
+    theteam == "deportivo empate" ? theteam = "ude" :
+    theteam == "inter" ? theteam = "inter" : 
+    theteam == "galactic boys" ? theteam = "gb" : 
+    theteam == "jubilados" ? theteam = "jub" : 
+    theteam == "just fragging b" ? theteam = "jfb" :
+    theteam == "layuve" ? theteam = "layuve" :
+    theteam == "los angeles fc" ? theteam = "lafc" :
+    theteam == "los magios" ? theteam = "lmg" :
+    theteam == "los magorditos" ? theteam = "mago" :
+    theteam == "meteors gaming" ? theteam = "mg" : 
+    theteam == "meiwa" ? theteam = "mfc" : 
+    theteam == "merca doçura" ? theteam = "mds" :
+    theteam == "modo diablo" ? theteam = "md" :
+    theteam == "musashi fc" ? theteam = "mcfc" :
+    theteam == "peñarol" ? theteam = "peñarol" :
+    theteam == "painters united" ? theteam = "pufc" :
+    theteam == "puro humo" ? theteam = "ph" :
+    theteam == "real mandril" ? theteam = "rm" :
+    theteam == "velez sarsfield" ? theteam = "velez" :
+    theteam == "viral team" ? theteam = "viral" :
+    theteam == "xsn" ? theteam = "xsn" :
+    theteam = "0";
+    return theteam;
+ };
+
+ export const getBanner = (team) => {
+    let theteam = team.toString().toLowerCase();
+    theteam == "TEST" ? theteam = "TEST" :
+    theteam == "ac milanesa" ? theteam = "acm" : 
+    theteam == "coldchester fc" ? theteam = "ccfc" : 
+    theteam == "inter" ? theteam = "inter" : 
+    theteam == "galactic boys" ? theteam = "gb" : 
+    theteam == "layuve" ? theteam = "layuve" :
+    theteam == "meteors gaming" ? theteam = "mg" : 
+    theteam == "merca doçura" ? theteam = "mds" :
+    theteam == "peñarol" ? theteam = "peñarol" :
+    theteam == "velez sarsfield" ? theteam = "velez" :
+    theteam == "viral team" ? theteam = "viral" :
+    theteam = "0";
+    return theteam;
+ };

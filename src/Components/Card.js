@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
-import {doSomethingWithInput, justAnAlert, steamid_to_64bit} from './Util.js'
-
+import {doSomethingWithInput, justAnAlert, steamid_to_64bit, getSeason,getTeam, getBanner} from './Util.js'
+import html2canvas from "html2canvas";
+import { saveAs } from 'file-saver';
 
 import * as SteamID from '@node-steam/id';
 import RadarChart from 'react-svg-radar-chart';
@@ -41,6 +42,7 @@ function Card(){
     const [savescaught, setSavescaught] = useState(0);
     const [goalsconceded, setGoalsconceded] = useState(0);
     const [secondsplayed, setSecondsplayed] = useState(0);
+    const [distance, setDistance] = useState(0);
     const [totalmatches, setTotalmatches] = useState(0);
 
     const [passavg, setPassavg] = useState(0);
@@ -56,6 +58,7 @@ function Card(){
     const [savespercentavg, setSavespercentavg] = useState(0);
     const [concededavg, setConcededavg] = useState(0);
     const [matchesratio, setMatchesratio] = useState(1);
+    const [sacrificio, setSacrificio] = useState(0);
 
     const [t0, setT0] = useState(0);
     const [t1, setT1] = useState(0);
@@ -108,39 +111,6 @@ function Card(){
     console.log(totaltime);
     console.log(secondsplayed/60/90);
     console.log(matches);
-
-    // creamos la variable theteam para convertir el nombre del equipo a sus iniciales, y que de esta forma los banners sean visibles (se buguea si tiene espacios)
-    const theteam = team.toString().toLowerCase() == 
-    "meteors gaming" ? "mg" : 
-    team.toString().toLowerCase() == "coldchester fc" ? "ccfc" : 
-    team.toString().toLowerCase() == "inter" ? "inter" : 
-    team.toString().toLowerCase() == "galactic boys" ? "gb" : 
-    team.toString().toLowerCase() == "los magorditos" ? "mago" :
-    team.toString().toLowerCase() == "viral team" ? "viral" :
-    team.toString().toLowerCase() == "layuve" ? "layuve" :
-    team.toString().toLowerCase() == "velez sarsfield" ? "velez" :
-    team.toString().toLowerCase() == "merca doçura" ? "mds" :
-    team.toString().toLowerCase() == "peñarol" ? "peñarol" :
-    team.toString().toLowerCase() == "los angeles fc" ? "lafc" :
-    team.toString().toLowerCase() == "los magios" ? "lmg" :
-    team.toString().toLowerCase() == "Caballeros De La Birra" ? "lcb" :
-    team.toString().toLowerCase() == "cualidachi f.c" ? "cacfc" :
-    team.toString().toLowerCase() == "dream seven" ? "d7" :
-    team.toString().toLowerCase() == "ac milanesa" ? "acm" : "0"
-    ;
-    const temporada = tID == 
-    "t1" ? "Temporada 1" : 
-    tID == "master" ? "Copa Master" : 
-    tID == "t2" ? "Temporada 2" : 
-    tID == "t3" ? "Temporada 3" : 
-    tID == "t4" ? "Temporada 4" :
-    tID == "t0" ? "Temporada 0" :
-    tID == "t5" ? "Temporada 5" :
-    tID == "maradei" ? "Copa Maradei" : 
-    tID == "copaamerica" ? "Copa America" :
-    "Total"
-    ;
-    console.log(theteam);
     
 
     // declaramos las formulas de las variables que usaremos a lo largo del programa, 
@@ -337,6 +307,7 @@ function Card(){
       setGoalsconceded(user[0].goalsconceded);
       setSecondsplayed(user[0].secondsplayed);
       setMatchesratio(actualtime/user[0].matches);
+      setDistance(user[0].distancecovered);
 
       setId(steamid_to_64bit(playerID));
       document.title = user[0].name;
@@ -345,7 +316,7 @@ function Card(){
       const DEFPASS = Math.round(doSomethingWithInput(PASS));
       const ASISS = Math.round(user[0].assists/actualtime*140);
       const TACKLE = Math.round(user[0].tacklescompleted/user[0].tackles*100*4.5);
-      const POSS = Math.round((user[0].possession/matchesratio * 7.76));
+      const POSS = Math.round((user[0].possession/(actualtime/user[0].matches) * 7.76));
       const INTER = Math.round((user[0].interceptions/actualtime*2.5+user[0].tacklescompleted/actualtime)*2.05);
       const FIN = Math.round(user[0].goals/actualtime*70);
       const PRE = Math.round((user[0].shotsontarget/user[0].shots*100));
@@ -359,8 +330,9 @@ function Card(){
       const CONCEDED = Math.abs(((user[0].goalsconceded-user[0].saves)/SAVES*100));
       const CONCEDED2 = Math.round(doSomethingWithInput(Math.round(doSomethingWithInput(CONCEDED))));
       const SAVEPERCENT2 = Math.round(doSomethingWithInput(SAVEPERCENT));
+      const SACRIFICIO = Math.abs((user[0].distancecovered * (100-(user[0].possession/(actualtime/user[0].matches)))) / 6200);
+      console.log("Posesion:"+POSS+"El sacrificio total es:"+SACRIFICIO)
       
-      console.log("ESTE ES EL PASS"+PASS+" ---- "+user[0].passescompleted/totaltime*5);
       setFinavg(Math.round(doSomethingWithInput(FIN)));
       setPassavg(Math.round(doSomethingWithInput(PASS)));
       setDefensepassavg(Math.round(doSomethingWithInput(DEFPASS)));
@@ -372,6 +344,7 @@ function Card(){
       setSavesavg(Math.round(doSomethingWithInput(SAVE)));
       setSavespercentavg(Math.round(doSomethingWithInput(SAVEPERCENT2)));
       setConcededavg(Math.round(doSomethingWithInput(CONCEDED2)));
+      setSacrificio(Math.round(doSomethingWithInput(SACRIFICIO)))
     }
 
     const fetchUser2 = async () => {
@@ -419,12 +392,12 @@ function Card(){
       if(usert1[0] && usert1[0].matches >= 1)
       {
       const totaltime = usert1[0].secondsplayed/60/90 > usert1[0].matches ? usert1[0].matches : usert1[0].secondsplayed/60/90;
-
       let PASS = Math.round(usert1[0].passescompleted/totaltime*5);
       let DEFPASS = Math.round(doSomethingWithInput(PASS));
       let ASISS = Math.round(usert1[0].assists/totaltime*140);
       let TACKLE = Math.round(usert1[0].tacklescompleted/usert1[0].tackles*100*4.5);
-      let POSS = Math.round(usert1[0].possession*8);
+      let MATCHESRATIO = (totaltime/usert1[0].matches);
+      let POSS = Math.round((usert1[0].possession/MATCHESRATIO)*8);
       let INTER = Math.round((usert1[0].interceptions/totaltime*2.5+usert1[0].tacklescompleted/totaltime)*2.05);
       let ATTACKASISS = (Math.round(doSomethingWithInput(ASISS)));
       let FIN = Math.round(usert1[0].goals/totaltime*70);
@@ -519,7 +492,8 @@ function Card(){
       let DEFPASS = Math.round(doSomethingWithInput(PASS));
       let ASISS = Math.round(usert1[0].assists/totaltime*140);
       let TACKLE = Math.round(usert1[0].tacklescompleted/usert1[0].tackles*100*4.5);
-      let POSS = Math.round(usert1[0].possession*8);
+      let MATCHESRATIO = (totaltime/usert1[0].matches);
+      let POSS = Math.round((usert1[0].possession/MATCHESRATIO)*8);
       let INTER = Math.round((usert1[0].interceptions/totaltime*2.5+usert1[0].tacklescompleted/totaltime)*2.05);
       let ATTACKASISS = (Math.round(doSomethingWithInput(ASISS)));
       let FIN = Math.round(usert1[0].goals/totaltime*70);
@@ -612,7 +586,8 @@ function Card(){
         let DEFPASS = Math.round(doSomethingWithInput(PASS));
         let ASISS = Math.round(usert1[0].assists/totaltime*140);
         let TACKLE = Math.round(usert1[0].tacklescompleted/usert1[0].tackles*100*4.5);
-        let POSS = Math.round(usert1[0].possession*8);
+        let MATCHESRATIO = (totaltime/usert1[0].matches);
+        let POSS = Math.round((usert1[0].possession/MATCHESRATIO)*7.76);
         let INTER = Math.round((usert1[0].interceptions/totaltime*2.5+usert1[0].tacklescompleted/totaltime)*2.05);
         let ATTACKASISS = (Math.round(doSomethingWithInput(ASISS)));
         let FIN = Math.round(usert1[0].goals/totaltime*70);
@@ -633,7 +608,7 @@ function Card(){
         DEFPASS = (Math.round(doSomethingWithInput(PASS)));
         ASISS = (Math.round(doSomethingWithInput(ASISS)));
         INTER = (Math.round(doSomethingWithInput(INTER)));
-        POSS = (Math.round(doSomethingWithInput(POSS*0.97)));
+        POSS = (Math.round(doSomethingWithInput(POSS)));
         ATTACKASISS = (Math.round(doSomethingWithInput(ASISS)));
         FIN = (Math.round(doSomethingWithInput(FIN)));
         PRE = (Math.round(doSomethingWithInput(PRE)));
@@ -705,7 +680,8 @@ function Card(){
         let DEFPASS = Math.round(doSomethingWithInput(PASS));
         let ASISS = Math.round(usert1[0].assists/totaltime*140);
         let TACKLE = Math.round(usert1[0].tacklescompleted/usert1[0].tackles*100*4.5);
-        let POSS = Math.round(usert1[0].possession*8);
+        let MATCHESRATIO = (totaltime/usert1[0].matches);
+        let POSS = Math.round((usert1[0].possession/MATCHESRATIO)*8);
         let INTER = Math.round((usert1[0].interceptions/totaltime*2.5+usert1[0].tacklescompleted/totaltime)*2.05);
         let ATTACKASISS = (Math.round(doSomethingWithInput(ASISS)));
         let FIN = Math.round(usert1[0].goals/totaltime*70);
@@ -799,7 +775,8 @@ function Card(){
         let DEFPASS = Math.round(doSomethingWithInput(PASS));
         let ASISS = Math.round(usert1[0].assists/totaltime*140);
         let TACKLE = Math.round(usert1[0].tacklescompleted/usert1[0].tackles*100*4.5);
-        let POSS = Math.round(usert1[0].possession*8);
+        let MATCHESRATIO = (totaltime/usert1[0].matches);
+        let POSS = Math.round((usert1[0].possession/MATCHESRATIO)*7.76);
         let INTER = Math.round((usert1[0].interceptions/totaltime*2.5+usert1[0].tacklescompleted/totaltime)*2.05);
         let ATTACKASISS = (Math.round(doSomethingWithInput(ASISS)));
         let FIN = Math.round(usert1[0].goals/totaltime*70);
@@ -820,7 +797,7 @@ function Card(){
         DEFPASS = (Math.round(doSomethingWithInput(PASS)));
         ASISS = (Math.round(doSomethingWithInput(ASISS)));
         INTER = (Math.round(doSomethingWithInput(INTER)));
-        POSS = (Math.round(doSomethingWithInput(POSS*0.97)));
+        POSS = (Math.round(doSomethingWithInput(POSS)));
         ATTACKASISS = (Math.round(doSomethingWithInput(ASISS)));
         FIN = (Math.round(doSomethingWithInput(FIN)));
         PRE = (Math.round(doSomethingWithInput(PRE)));
@@ -893,7 +870,8 @@ function Card(){
         let DEFPASS = Math.round(doSomethingWithInput(PASS));
         let ASISS = Math.round(usert1[0].assists/totaltime*140);
         let TACKLE = Math.round(usert1[0].tacklescompleted/usert1[0].tackles*100*4.5);
-        let POSS = Math.round(usert1[0].possession*8);
+        let MATCHESRATIO = (totaltime/usert1[0].matches);
+        let POSS = Math.round((usert1[0].possession/MATCHESRATIO)*8);
         let INTER = Math.round((usert1[0].interceptions/totaltime*2.5+usert1[0].tacklescompleted/totaltime)*2.05);
         let ATTACKASISS = (Math.round(doSomethingWithInput(ASISS)));
         let FIN = Math.round(usert1[0].goals/totaltime*70);
@@ -986,7 +964,8 @@ function Card(){
         let DEFPASS = Math.round(doSomethingWithInput(PASS));
         let ASISS = Math.round(usert1[0].assists/totaltime*140);
         let TACKLE = Math.round(usert1[0].tacklescompleted/usert1[0].tackles*100*4.5);
-        let POSS = Math.round(usert1[0].possession*8);
+        let MATCHESRATIO = (totaltime/usert1[0].matches);
+        let POSS = Math.round((usert1[0].possession/MATCHESRATIO)*8);
         let INTER = Math.round((usert1[0].interceptions/totaltime*2.5+usert1[0].tacklescompleted/totaltime)*2.05);
         let ATTACKASISS = (Math.round(doSomethingWithInput(ASISS)));
         let FIN = Math.round(usert1[0].goals/totaltime*70);
@@ -1079,7 +1058,8 @@ function Card(){
         let DEFPASS = Math.round(doSomethingWithInput(PASS));
         let ASISS = Math.round(usert1[0].assists/totaltime*140);
         let TACKLE = Math.round(usert1[0].tacklescompleted/usert1[0].tackles*100*4.5);
-        let POSS = Math.round(usert1[0].possession*8);
+        let MATCHESRATIO = (totaltime/usert1[0].matches);
+        let POSS = Math.round((usert1[0].possession/MATCHESRATIO)*8);
         let INTER = Math.round((usert1[0].interceptions/totaltime*2.5+usert1[0].tacklescompleted/totaltime)*2.05);
         let ATTACKASISS = (Math.round(doSomethingWithInput(ASISS)));
         let FIN = Math.round(usert1[0].goals/totaltime*70);
@@ -1172,7 +1152,8 @@ function Card(){
         let DEFPASS = Math.round(doSomethingWithInput(PASS));
         let ASISS = Math.round(usert1[0].assists/totaltime*140);
         let TACKLE = Math.round(usert1[0].tacklescompleted/usert1[0].tackles*100*4.5);
-        let POSS = Math.round(usert1[0].possession*8);
+        let MATCHESRATIO = (totaltime/usert1[0].matches);
+        let POSS = Math.round((usert1[0].possession/MATCHESRATIO)* 7.76);
         let INTER = Math.round((usert1[0].interceptions/totaltime*2.5+usert1[0].tacklescompleted/totaltime)*2.05);
         let ATTACKASISS = (Math.round(doSomethingWithInput(ASISS)));
         let FIN = Math.round(usert1[0].goals/totaltime*70);
@@ -1193,7 +1174,7 @@ function Card(){
         DEFPASS = (Math.round(doSomethingWithInput(PASS)));
         ASISS = (Math.round(doSomethingWithInput(ASISS)));
         INTER = (Math.round(doSomethingWithInput(INTER)));
-        POSS = (Math.round(doSomethingWithInput(POSS*0.97)));
+        POSS = (Math.round(doSomethingWithInput(POSS)));
         ATTACKASISS = (Math.round(doSomethingWithInput(ASISS)));
         FIN = (Math.round(doSomethingWithInput(FIN)));
         PRE = (Math.round(doSomethingWithInput(PRE)));
@@ -1265,7 +1246,8 @@ function Card(){
         let DEFPASS = Math.round(doSomethingWithInput(PASS));
         let ASISS = Math.round(usert1[0].assists/totaltime*140);
         let TACKLE = Math.round(usert1[0].tacklescompleted/usert1[0].tackles*100*4.5);
-        let POSS = Math.round(usert1[0].possession*8);
+        let MATCHESRATIO = (totaltime/usert1[0].matches);
+        let POSS = Math.round((usert1[0].possession/MATCHESRATIO)*8);
         let INTER = Math.round((usert1[0].interceptions/totaltime*2.5+usert1[0].tacklescompleted/totaltime)*2.05);
         let ATTACKASISS = (Math.round(doSomethingWithInput(ASISS)));
         let FIN = Math.round(usert1[0].goals/totaltime*70);
@@ -1401,6 +1383,12 @@ function Card(){
       useful: 'Participacion Juego',
     };
  
+    const printPDF = () => {
+      html2canvas(document.querySelector("#ThePlayerCard")).then(function(canvas9) {
+        var playerimage = canvas9.toDataURL("image/png");
+        window.saveAs(playerimage, `${tID}_${playerID}.png`);
+      });
+    };
 
     //(`http://stats.iosoccer-sa.bid/api/player/${id}/all`)
 
@@ -1458,13 +1446,13 @@ function Card(){
     return(
       <div>
         <div className="content-container">
-          <div className="fw-container bg-dark"  style={{ backgroundImage: `url(` + require(`../images/banners/${theteam}.png`) + `)` , backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}>
-            <div className="container-large flex top-container">
-              <div className="player-card player-card-shadow player-card-large bg-image2" style={{ backgroundImage: ovr >= 90 ? `url(` + require(`../images/bg/0.png`) + `)`: ovr >= 80 && ovr < 90 ? `url(` + require(`../images/bg/03.png`) + `)` : ovr >= 70 && ovr < 80 ? `url(` + require(`../images/bg/05.png`) + `)` : `url(` + require(`../images/bg/05.png`) + `)`}}>
+          <div className="fw-container bg-dark"  style={{ backgroundImage: `url(` + require(`../images/banners/${getBanner(team)}.png`) + `)` , backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}>
+            <div className="container-large flex top-container"> 
+              <div id="ThePlayerCard" className="player-card player-card-shadow player-card-large bg-image2" style={{ backgroundImage: ovr >= 90 ? `url(` + require(`../images/bg/0.png`) + `)`: ovr >= 80 && ovr < 90 ? `url(` + require(`../images/bg/03.png`) + `)` : ovr >= 70 && ovr < 80 ? `url(` + require(`../images/bg/05.png`) + `)` : `url(` + require(`../images/bg/05.png`) + `)`}} onClick={printPDF}>
                 <div className="player-card-position">{pos}</div>
                 <div className="player-card-ovr">{ovr}</div>
                 <div className="player-card-name">{name}</div>
-                <img className="player-card-club-featured" src={require(`../images/clubs/${theteam.toString().toLowerCase()}.png`)}></img>
+                <img className="player-card-club-featured" src={require(`../images/clubs/${getTeam(team)}.png`)}></img>
                 <img className="player-card-image-featured" src={require(`../images/cartas/${id}.png`)}></img>
               </div>
               <div className="top-info">
@@ -1472,7 +1460,7 @@ function Card(){
                   <span className="ovr stat_tier_3" style={{backgroundColor: ovr >= 90 ? '#02fec5': ovr >= 80 && ovr < 90 ? '#a8fe02' : ovr >= 70 && ovr < 80 ? '#fbb206' : 'red' }}>{ovr}</span>
                   <span>&nbsp;</span>{name}
                 </h1>
-                <h2 className="subtle-text">{name} IOSoccer {temporada} Stats</h2>
+                <h2 className="subtle-text">{name} IOSoccer {getSeason(tID)} Stats</h2>
                 <p className="description subtle-text">{name} es un futbolista con una media de {ovr} en la posicion de {pos}. {name} es un jugador perteneciente al equipo {team} de IOSoccer.</p>
                 <div>
                   <ul className="versions-list">
@@ -1481,7 +1469,7 @@ function Card(){
                       <li className="versions-list-el">
                       <span className="stat stat_tier_2" style={{backgroundColor: t0 >= 90 ? '#02fec5': t0 >= 80 && t0 < 90 ? '#a8fe02' : t0 >= 70 && t0 < 80 ? '#fbb206' : 'red' }}>
                       {t0}</span>
-                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${t0team.toString().toLowerCase()}.png`)} title={t0team} />
+                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${getTeam(t0team)}.png`)} title={t0team} />
                       <span className="game">
                       Temporada 0</span>
                       </li>
@@ -1492,7 +1480,7 @@ function Card(){
                       <li className="versions-list-el">
                       <span className="stat stat_tier_2" style={{backgroundColor: t1 >= 90 ? '#02fec5': t1 >= 80 && t1 < 90 ? '#a8fe02' : t1 >= 70 && t1 < 80 ? '#fbb206' : 'red' }}>
                       {t1}</span>
-                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${t1team.toString().toLowerCase()}.png`)} title={t1team} />
+                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${getTeam(t1team)}.png`)} title={t1team} />
                       <span className="game">
                       Temporada 1</span>
                       </li>
@@ -1503,7 +1491,7 @@ function Card(){
                       <li className="versions-list-el">
                       <span className="stat stat_tier_2" style={{backgroundColor: t2 >= 90 ? '#02fec5': t2 >= 80 && t2 < 90 ? '#a8fe02' : t2 >= 70 && t2 < 80 ? '#fbb206' : 'red' }}>
                       {t2}</span>
-                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${t2team.toString().toLowerCase()}.png`)} title={t2team} />
+                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${getTeam(t2team)}.png`)} title={t2team} />
                       <span className="game">
                       Temporada 2</span>
                       </li>
@@ -1514,7 +1502,7 @@ function Card(){
                       <li className="versions-list-el">
                       <span className="stat stat_tier_2" style={{backgroundColor: t3 >= 90 ? '#02fec5': t3 >= 80 && t3 < 90 ? '#a8fe02' : t3 >= 70 && t3 < 80 ? '#fbb206' : 'red' }}>
                       {t3}</span>
-                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${t3team.toString().toLowerCase()}.png`)} title={t3team} />
+                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${getTeam(t3team)}.png`)} title={t3team} />
                       <span className="game">
                       Temporada 3</span>
                       </li>
@@ -1523,7 +1511,7 @@ function Card(){
                     <div>
                       {t4real ? <button className="abutton" onClick={r => setTID(String("t4")) && setActualovr(t4)}> <li className="versions-list-el"> <span className="stat stat_tier_2" style={{backgroundColor: t4 >= 90 ? '#02fec5': t4 >= 80 && t4 < 90 ? '#a8fe02' : t4 >= 70 && t4 < 80 ? '#fbb206' : 'red' }}>
                       {t4}</span>
-                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${t4team.toString().toLowerCase()}.png`)} title={t4team} />
+                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${getTeam(t4team)}.png`)} title={t4team} />
                       <span className="game">
                       Temporada 4</span> </li> </button>: null}
                     </div>
@@ -1532,7 +1520,7 @@ function Card(){
                       <li className="versions-list-el">
                       <span className="stat stat_tier_2" style={{backgroundColor: t5 >= 90 ? '#02fec5': t5 >= 80 && t5 < 90 ? '#a8fe02' : t5 >= 70 && t5 < 80 ? '#fbb206' : 'red' }}>
                       {t5}</span>
-                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${t5team.toString().toLowerCase()}.png`)} title={t5team} />
+                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${getTeam(t5team)}.png`)} title={t5team} />
                       <span className="game">
                       Temporada 5</span>
                       </li>
@@ -1543,7 +1531,7 @@ function Card(){
                       <li className="versions-list-el">
                       <span className="stat stat_tier_2" style={{backgroundColor: t6 >= 90 ? '#02fec5': t6 >= 80 && t6 < 90 ? '#a8fe02' : t6 >= 70 && t6 < 80 ? '#fbb206' : 'red' }}>
                       {t6}</span>
-                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${t6team.toString().toLowerCase()}.png`)} title={t6team} />
+                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${getTeam(t6team)}.png`)} title={t6team} />
                       <span className="game">
                       Temporada 6</span>
                       </li>
@@ -1555,7 +1543,7 @@ function Card(){
                       <li className="versions-list-el">
                       <span className="stat stat_tier_2" style={{backgroundColor: maradei >= 90 ? '#02fec5': maradei >= 80 && maradei < 90 ? '#a8fe02' : maradei >= 70 && maradei < 80 ? '#fbb206' : 'red' }}>
                       {maradei}</span>
-                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${maradeiteam.toString().toLowerCase()}.png`)} title={maradeiteam} />
+                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${getTeam(maradeiteam)}.png`)} title={maradeiteam} />
                       <span className="game">
                       Copa Maradei</span>
                       </li>
@@ -1566,7 +1554,7 @@ function Card(){
                       <li className="versions-list-el">
                       <span className="stat stat_tier_2" style={{backgroundColor: master >= 90 ? '#02fec5': master >= 80 && master < 90 ? '#a8fe02' : master >= 70 && master < 80 ? '#fbb206' : 'red' }}>
                       {master}</span>
-                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${masterteam.toString().toLowerCase()}.png`)} title={masterteam} />
+                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${getTeam(masterteam)}.png`)} title={masterteam} />
                       <span className="game">
                       Copa Master</span>
                       </li>
@@ -1577,7 +1565,7 @@ function Card(){
                       <li className="versions-list-el">
                       <span className="stat stat_tier_2" style={{backgroundColor: america >= 90 ? '#02fec5': america >= 80 && america < 90 ? '#a8fe02' : america >= 70 && america < 80 ? '#fbb206' : 'red' }}>
                       {america}</span>
-                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${americateam.toString().toLowerCase()}.png`)} title={americateam} />
+                      <img className="club-flag versions-list-flag" src={require(`../images/clubs/${getTeam(americateam)}.png`)} title={americateam} />
                       <span className="game">
                       Copa America</span>
                       </li>
@@ -1688,7 +1676,7 @@ function Card(){
                   </tr>
                   <tr>
                     <td>Posicion</td>
-                    <td>{pos}</td>
+                    <td>{pos/matchesratio}</td>
                   </tr>
                   <tr>
                     <td>Goles</td>
@@ -1742,6 +1730,10 @@ function Card(){
                         <tr>
                           <td className="stat_tier_3 stat" style={{backgroundColor: attackassistavg >= 90 ? '#02fec5': attackassistavg >= 80 && attackassistavg < 90 ? '#a8fe02' : attackassistavg >= 70 && attackassistavg < 80 ? '#fbb206' : 'red' }}>{attackassistavg}</td>
                           <td>Asistidor</td>
+                        </tr>
+                        <tr>
+                          <td className="stat_tier_3 stat" style={{backgroundColor: sacrificio >= 90 ? '#02fec5': sacrificio >= 80 && sacrificio < 90 ? '#a8fe02' : sacrificio >= 70 && sacrificio < 80 ? '#fbb206' : 'red'}}>{sacrificio}</td>
+                          <td>Sacrificio</td>
                         </tr>
                       </tbody>
                     </table>
@@ -1803,7 +1795,7 @@ function Card(){
                       Capacidad Portero
                     </h4>
                     <div className="star-bar" style={{background: '#e6e6e6', height: '8px', position: 'relative', borderRadius: '5px', marginBottom: '15px', width: '400px'}}>
-                      <div className="stat_tier_2 stat-bar-div" style={{backgroundColor: CP >= 90 ? '#02fec5': CP >= 80 && CP < 90 ? '#a8fe02' : CP >= 70 && AF < 80 ? '#fbb206' : 'red', width: `${CP}%`}}></div>
+                      <div className="stat_tier_2 stat-bar-div" style={{backgroundColor: CP >= 90 ? '#02fec5': CP >= 80 && CP < 90 ? '#a8fe02' : CP >= 70 && CP  < 80 ? '#fbb206' : 'red', width: `${Math.trunc(CP)}%`}}></div>
                     </div>
                     <table className="player-stats-modern">
                       <tbody>
@@ -1821,6 +1813,20 @@ function Card(){
                         </tr>
                       </tbody>
                     </table>
+                  </div>
+                  <div className="cards-container flex flex-expand">
+                    <div className="player-main-column">
+                      <h3>Estilo de Juego</h3>
+                      <ul class="player-index-list">
+                      <li></li>
+                      </ul>
+                    </div>
+                    <div className="player-main-column">
+                      <h3>Habilidades de Jugador</h3>
+                      <ul class="player-index-list">
+                      <li></li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>

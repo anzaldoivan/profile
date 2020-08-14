@@ -206,7 +206,7 @@ a.button:hover {
 }
 
 .player-card-shadow {
-  box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.388), 0 0 8px 0px rgba(0, 0, 0, 0.259);
+  /*box-shadow: 0px 0px 12px 3px rgba(0,0,0,0.34); IMPORTANTE BORRAR DESPUES DE DESCARGAR LAS IMAGENES*/
 }
 
 .player-card {
@@ -606,7 +606,7 @@ td {
 .player-card-club-featured {
   width: 50px;
   height: 50px;
-  margin-top: 3px;
+  margin-top: 10px;
   position: relative;
   top: 26%;
   left: 4%;
@@ -737,4 +737,219 @@ td {
   left: 0;
   top: 0;
   border-radius: 5px;
+}
+
+.cards-container {
+  margin-left: -20px;
+  margin-right: -20px;
+}
+
+.player-main-column{
+  vertical-align: top;
+  display: inline-block;
+  margin-top: 20px;
+  margin-right: 60px;
+  margin-left: 40px;
+  width: auto;
+}
+
+.player-index-list {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+  padding-right: 200px;
+  padding-top: 0;
+}
+
+.player-index-list > li {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.cards-container > .player-main-column {
+  margin-left: 40px;
+  margin-right: 20px;
+  width: auto;
+}
+
+.fut-container{
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.fut-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.fut-col{
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.fut-header-bg{
+  background: rgba(0,0,0,0.8);
+  padding: 10px;
+  border-radius: 3px;
+  width: 95%;
+}
+
+.fut_header {
+  margin-top: 5px;
+  font-family: 'Oswald', sans-serif !important;
+  font-size: 28px;
+  font-weight: 500;
+  padding-left: 5px;
+  margin-bottom: 5px;
+}
+
+.fut-col-pack{
+  margin-top: 20px;
+}
+
+.fut-pack-area{
+  background: rgba(0,0,0,0.7) none repeat scroll 0% 0%;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
+.fut-col-card{
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+.fut-col-pack-1{
+  background: linear-gradient(45deg, #f2f2f2, #e6e6e6);
+  height: 100%;
+  border-left: 2px solid #000;
+  border-right: 2px solid #000;
+  min-height: 444px;
+  background: url("./images/pack/tri-bg.png");
+  cursor: pointer;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
+.fut-pack-name{
+  text-align: center;
+  font-family: 'Oswald', sans-serif !important;
+  font-size: 26px;
+  color: black;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.fut-divide-line {
+  height: 1px;
+  background: rgba(0,0,0,0.2);
+}
+
+ol.inline>li, ul.inline>li {
+  display: inline-block;
+  padding-left: 1px;
+  padding-right: 1px;
+}
+
+.fut-image{
+  width: 210px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.fut-divide-bottom {
+  height: 1px;
+  background: rgba(0,0,0,0.4);
+}
+
+.fut-pack-desc{
+  text-align: center;
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.fut-items{
+  color: white;
+  font-family: 'Oswald', sans-serif !important;
+  margin-right: 20px;
+}
+
+.fut-items.top{
+  font-size: 12px;
+  padding-top: 5px;
+}
+
+.fut-items-bottom{
+  font-size: 12px;
+  position: relative;
+  top: -10px;
+  font-weight: 300;
+}
+
+.fut-hex {
+  background: url("./images/pack/gold_pack_shape.png") top left no-repeat;
+  height: 45px;
+  width: 40px;
+  background-size: 45px 48px;
+  font-family: 'Oswald', sans-serif !important;
+  color: black;
+  background-position: -3px;
+  margin-right: 40px;
+}
+
+.fut-hex-rare {
+  background: url("./images/pack/rare_pack_shape.png") top left no-repeat;
+  height: 45px;
+  width: 40px;
+  background-size: 45px 48px;
+  font-family: 'Oswald', sans-serif !important;
+  color: white;
+  background-position: -3px;
+  background-position-x: -3px;
+  background-position-y: center;
+  margin-right: 40px;
+}
+
+.fut-choose{
+  background: rgba(0,0,0,0.7) none repeat scroll 0% 0%;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
+#canvas-wrap { position:relative } /* Make this a positioned parent */
+#overlay     { position:absolute; top:20px; left:30px; }
+
+.playerimage{
+
+}
+
+.fut-player-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 15px;
+  margin-left: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.fut-cards{
+  justify-content: center;
+}
+
+.fut-divide{
+  width: 10px;
+  background: rgba(0,0,0,0.2);
 }
