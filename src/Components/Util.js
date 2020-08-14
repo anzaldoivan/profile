@@ -113,18 +113,21 @@ export const getSeason = (tID) => {
     theteam == "TEST" ? theteam = "TEST" :
     theteam == "ac milanesa" ? theteam = "acm" : 
     theteam == "afc academia" ? theteam = "afca" :
+    theteam == "argentina" ? theteam = "arg" :
     theteam == "bravona" ? theteam = "bv" :
     theteam == "caballeros de la birra" ? theteam = "lcb" :
     theteam == "chicago me limpio" ? theteam = "cml" :
     theteam == "coldchester fc" ? theteam = "ccfc" : 
     theteam == "cualidachi f.c" ? theteam = "cacfc" :
     theteam == "dream seven" ? theteam = "d7" :
+    theteam == "defensores del bidon" ? theteam = "cadb" :
     theteam == "defensores del doctor" ? theteam = "cadd" :
     theteam == "deportivo empate" ? theteam = "ude" :
     theteam == "inter" ? theteam = "inter" : 
     theteam == "galactic boys" ? theteam = "gb" : 
     theteam == "jubilados" ? theteam = "jub" : 
     theteam == "just fragging b" ? theteam = "jfb" :
+    theteam == "la galaxy" ? theteam = "lag" :
     theteam == "layuve" ? theteam = "layuve" :
     theteam == "los angeles fc" ? theteam = "lafc" :
     theteam == "los magios" ? theteam = "lmg" :
@@ -145,19 +148,19 @@ export const getSeason = (tID) => {
     return theteam;
  };
 
- export const getBanner = (team) => {
-    let theteam = team.toString().toLowerCase();
-    theteam == "TEST" ? theteam = "TEST" :
-    theteam == "ac milanesa" ? theteam = "acm" : 
-    theteam == "coldchester fc" ? theteam = "ccfc" : 
-    theteam == "inter" ? theteam = "inter" : 
-    theteam == "galactic boys" ? theteam = "gb" : 
-    theteam == "layuve" ? theteam = "layuve" :
-    theteam == "meteors gaming" ? theteam = "mg" : 
-    theteam == "merca doçura" ? theteam = "mds" :
-    theteam == "peñarol" ? theteam = "peñarol" :
-    theteam == "velez sarsfield" ? theteam = "velez" :
-    theteam == "viral team" ? theteam = "viral" :
-    theteam = "0";
-    return theteam;
+ export const getBanner = (bannerteam) => {
+    let thebanner = bannerteam.toString().toLowerCase();
+    thebanner == "TEST" ? thebanner = "TEST" :
+    thebanner == "ac milanesa" ? thebanner = "acm" : 
+    thebanner == "coldchester fc" ? thebanner = "ccfc" : 
+    thebanner == "inter" ? thebanner = "inter" : 
+    thebanner == "galactic boys" ? thebanner = "gb" : 
+    thebanner == "layuve" ? thebanner = "layuve" :
+    thebanner == "meteors gaming" ? thebanner = "mg" : 
+    thebanner == "merca doçura" ? thebanner = "mds" :
+    thebanner == "peñarol" ? thebanner = "peñarol" :
+    thebanner == "velez sarsfield" ? thebanner = "velez" :
+    thebanner == "viral team" ? thebanner = "viral" :
+    thebanner = "0";
+    return thebanner;
  };
