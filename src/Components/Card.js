@@ -92,6 +92,7 @@ function Card(){
     const [t5team, setT5team] = useState(0);
     const [t6team, setT6team] = useState(0);
     const [banner, setBanner] = useState(0);
+    const [fullteam, setFullteam] = useState(0);
     
     const players = require("./players.json");
     const torneos = require("./torneos.json");
@@ -109,10 +110,6 @@ function Card(){
     const steam = new SteamAPI('XDDDDDDDDDDDDDDDDDDDDDDDDDDDDD');
 
     const totaltime = secondsplayed/60/90 > matches ? matches : secondsplayed/60/90;
-    console.log("a ver el totaltime");
-    console.log(totaltime);
-    console.log(secondsplayed/60/90);
-    console.log(matches);
     
 
     // declaramos las formulas de las variables que usaremos a lo largo del programa, 
@@ -291,6 +288,7 @@ function Card(){
       // fetch inicial, por default agarra la playerID mia y la temporada es la de "all"
       setName(user[0].name);
       setTeam(getTeam(user[0].team));
+      setFullteam(user[0].team);
       setBanner(getBanner(user[0].team));
       setMatches(user[0].matches);
       setGoals(user[0].goals);
@@ -434,7 +432,6 @@ function Card(){
       //const CCT1 = ((usert1[0].passescompleted+usert1[0].assists*10+usert1[0].possession*10)/totaltime)*2.05;
       const CCT1 = (PASS+ASISS+POSS)/3;
       const CPT1 = (SAVE+SAVEPERCENT+CONCEDED)/3;
-      console.log("PORQUE MIERDA ME DA INFINITOOOO -> "+ ADT1 + " / " + AFT1 + " / " + CCT1);
       const val_deft1 = (ADT1 * 2.3 + AFT1 / 2.5 + CCT1 / 2)/3;
       const val_delt1 = ( AFT1 * 2.3 + ADT1 / 2.5 + CCT1 / 2)/3;
       const val_mcat1 = ( CCT1 + AFT1 ) / 2;
@@ -1464,7 +1461,7 @@ function Card(){
                   <span>&nbsp;</span>{name}
                 </h1>
                 <h2 className="subtle-text">{name} IOSoccer {getSeason(tID)} Stats</h2>
-                <p className="description subtle-text">{name} es un futbolista con una media de {ovr} en la posicion de {pos}. {name} es un jugador perteneciente al equipo {team} de IOSoccer.</p>
+                <p className="description subtle-text">{name} es un futbolista con una media de {ovr} en la posicion de {pos}. {name} es un jugador perteneciente al equipo {fullteam} de IOSoccer.</p>
                 <div>
                   <ul className="versions-list">
                     <div>
@@ -1667,7 +1664,7 @@ function Card(){
                   </tr>
                   <tr>
                     <td>Equipo</td>
-                    <td>{team}</td>
+                    <td>{fullteam}</td>
                   </tr>
                   <tr>
                     <td>Partidos</td>
