@@ -326,11 +326,15 @@ function Card(){
       const ATASISS = Math.round(doSomethingWithInput(ASISS));
       const SAVE = Math.round((user[0].saves/actualtime*11));
       let SAVES = user[0].saves;
+      let CONCEDE = user[0].goalsconceded;
       if(SAVES==0){
         SAVES=1;
       }
+      if(CONCEDE==0){
+        CONCEDE=1;
+      }
       //const CONCEDED = Math.abs(((user[0].goalsconceded-user[0].saves)/SAVES*100)*1.5);
-      const CONCEDED = Math.abs((1-(user[0].goalsconceded/SAVES))*130);
+      const CONCEDED = Math.abs((1-(CONCEDE/SAVES))*130);
       const SACRIFICIO = Math.abs((user[0].distancecovered * (100-(user[0].possession/(actualtime/user[0].matches)))) / 7000);
       
       setFinavg(Math.round(doSomethingWithInput(FIN)));
@@ -406,10 +410,14 @@ function Card(){
       let SAVE = Math.round((usert1[0].saves/totaltime*11));
       let SAVEPERCENT = Math.round((usert1[0].savescaught/usert1[0].saves)*110);
       let SAVES = usert1[0].saves;
+      let CONCEDE = usert1[0].goalsconceded;
       if(SAVES==0){
         SAVES=1;
       }
-      let CONCEDED = Math.abs((1-(usert1[0].goalsconceded/SAVES))*130);
+      if(CONCEDE==0){
+        CONCEDE=1;
+      }
+      let CONCEDED = Math.abs((1-(CONCEDE/SAVES))*130);
       
       PASS = (Math.round(doSomethingWithInput(PASS)));
       DEFPASS = (Math.round(doSomethingWithInput(PASS)));
@@ -498,10 +506,14 @@ function Card(){
       let SAVE = Math.round((usert1[0].saves/totaltime*11));
       let SAVEPERCENT = Math.round((usert1[0].savescaught/usert1[0].saves)*110);
       let SAVES = usert1[0].saves;
+      let CONCEDE = usert1[0].goalsconceded;
       if(SAVES==0){
         SAVES=1;
       }
-      let CONCEDED = Math.abs((1-(usert1[0].goalsconceded/SAVES))*130);
+      if(CONCEDE==0){
+        CONCEDE=1;
+      }
+      let CONCEDED = Math.abs((1-(CONCEDE/SAVES))*130);
 
       CONCEDED = (Math.round(doSomethingWithInput(CONCEDED)));
       PASS = (Math.round(doSomethingWithInput(PASS)));
@@ -590,11 +602,14 @@ function Card(){
         let SAVE = Math.round((usert1[0].saves/totaltime*11));
         let SAVEPERCENT = Math.round((usert1[0].savescaught/usert1[0].saves)*110);
         let SAVES = usert1[0].saves;
+        let CONCEDE = usert1[0].goalsconceded;
         if(SAVES==0){
           SAVES=1;
         }
-        let CONCEDED = Math.abs((1-(usert1[0].goalsconceded/SAVES))*130);
-        CONCEDED = (Math.round(doSomethingWithInput(CONCEDED)));
+        if(CONCEDE==0){
+          CONCEDE=1;
+        }
+        let CONCEDED = Math.abs((1-(CONCEDE/SAVES))*130);
         
         PASS = (Math.round(doSomethingWithInput(PASS)));
         DEFPASS = (Math.round(doSomethingWithInput(PASS)));
@@ -682,11 +697,14 @@ function Card(){
         let SAVE = Math.round((usert1[0].saves/totaltime*11));
         let SAVEPERCENT = Math.round((usert1[0].savescaught/usert1[0].saves)*110);
         let SAVES = usert1[0].saves;
+        let CONCEDE = usert1[0].goalsconceded;
         if(SAVES==0){
           SAVES=1;
         }
-        let CONCEDED = Math.abs((1-(usert1[0].goalsconceded/SAVES))*130);
-        CONCEDED = (Math.round(doSomethingWithInput(CONCEDED)));
+        if(CONCEDE==0){
+          CONCEDE=1;
+        }
+        let CONCEDED = Math.abs((1-(CONCEDE/SAVES))*130);
         
         PASS = (Math.round(doSomethingWithInput(PASS)));
         DEFPASS = (Math.round(doSomethingWithInput(PASS)));
@@ -853,13 +871,12 @@ function Card(){
       if(usert1[0] && usert1[0].matches >= 1)
       {
         const totaltime = usert1[0].secondsplayed/60/90 > usert1[0].matches ? usert1[0].matches : usert1[0].secondsplayed/60/90;
-
         let PASS = Math.round(usert1[0].passescompleted/totaltime*5);
         let DEFPASS = Math.round(doSomethingWithInput(PASS));
         let ASISS = Math.round(usert1[0].assists/totaltime*140);
         let TACKLE = Math.round(usert1[0].tacklescompleted/usert1[0].tackles*100*4.5);
         let MATCHESRATIO = (totaltime/usert1[0].matches);
-        let POSS = Math.round((usert1[0].possession/MATCHESRATIO)*8);
+        let POSS = Math.round((usert1[0].possession/(totaltime/usert1[0].matches) * 7.76));
         let INTER = Math.round((usert1[0].interceptions/totaltime*2.5+usert1[0].tacklescompleted/totaltime)*2.05);
         let ATTACKASISS = (Math.round(doSomethingWithInput(ASISS)));
         let FIN = Math.round(usert1[0].goals/totaltime*70);
@@ -868,22 +885,26 @@ function Card(){
         let SAVE = Math.round((usert1[0].saves/totaltime*11));
         let SAVEPERCENT = Math.round((usert1[0].savescaught/usert1[0].saves)*110);
         let SAVES = usert1[0].saves;
+        let CONCEDE = usert1[0].goalsconceded;
         if(SAVES==0){
           SAVES=1;
         }
-        let CONCEDED = Math.abs((1-(usert1[0].goalsconceded/SAVES))*130);
-        CONCEDED = (Math.round(doSomethingWithInput(CONCEDED)));
+        if(CONCEDE==0){
+          CONCEDE=1;
+        }
+        let CONCEDED = Math.abs((1-(CONCEDE/SAVES))*130);
         
         PASS = (Math.round(doSomethingWithInput(PASS)));
         DEFPASS = (Math.round(doSomethingWithInput(PASS)));
         ASISS = (Math.round(doSomethingWithInput(ASISS)));
         INTER = (Math.round(doSomethingWithInput(INTER)));
-        POSS = (Math.round(doSomethingWithInput(POSS*0.97)));
+        POSS = (Math.round(doSomethingWithInput(POSS)));
         ATTACKASISS = (Math.round(doSomethingWithInput(ASISS)));
         FIN = (Math.round(doSomethingWithInput(FIN)));
         PRE = (Math.round(doSomethingWithInput(PRE)));
         SAVE = (Math.round(doSomethingWithInput(SAVE)));
         SAVEPERCENT = (Math.round(doSomethingWithInput(SAVEPERCENT)));
+        CONCEDED = (Math.round(doSomethingWithInput(CONCEDED)));
   
         const AFT1 = (FIN+PRE+ATTACKASISS)/3;
         const ADT1 = (INTER+DEFPASS)/2;
@@ -960,10 +981,14 @@ function Card(){
         let SAVE = Math.round((usert1[0].saves/totaltime*11));
         let SAVEPERCENT = Math.round((usert1[0].savescaught/usert1[0].saves)*110);
         let SAVES = usert1[0].saves;
+        let CONCEDE = usert1[0].goalsconceded;
         if(SAVES==0){
           SAVES=1;
         }
-        let CONCEDED = Math.abs((1-(usert1[0].goalsconceded/SAVES))*130);
+        if(CONCEDE==0){
+          CONCEDE=1;
+        }
+        let CONCEDED = Math.abs((1-(CONCEDE/SAVES))*130);
         CONCEDED = (Math.round(doSomethingWithInput(CONCEDED)));
         
         PASS = (Math.round(doSomethingWithInput(PASS)));
@@ -1052,10 +1077,14 @@ function Card(){
         let SAVE = Math.round((usert1[0].saves/totaltime*11));
         let SAVEPERCENT = Math.round((usert1[0].savescaught/usert1[0].saves)*110);
         let SAVES = usert1[0].saves;
+        let CONCEDE = usert1[0].goalsconceded;
         if(SAVES==0){
           SAVES=1;
         }
-        let CONCEDED = Math.abs((1-(usert1[0].goalsconceded/SAVES))*130);
+        if(CONCEDE==0){
+          CONCEDE=1;
+        }
+        let CONCEDED = Math.abs((1-(CONCEDE/SAVES))*130);
         CONCEDED = (Math.round(doSomethingWithInput(CONCEDED)));
         
         PASS = (Math.round(doSomethingWithInput(PASS)));
@@ -1144,10 +1173,14 @@ function Card(){
         let SAVE = Math.round((usert1[0].saves/totaltime*11));
         let SAVEPERCENT = Math.round((usert1[0].savescaught/usert1[0].saves)*110);
         let SAVES = usert1[0].saves;
+        let CONCEDE = usert1[0].goalsconceded;
         if(SAVES==0){
           SAVES=1;
         }
-        let CONCEDED = Math.abs((1-(usert1[0].goalsconceded/SAVES))*130);
+        if(CONCEDE==0){
+          CONCEDE=1;
+        }
+        let CONCEDED = Math.abs((1-(CONCEDE/SAVES))*130);
         CONCEDED = (Math.round(doSomethingWithInput(CONCEDED)));
         
         PASS = (Math.round(doSomethingWithInput(PASS)));
